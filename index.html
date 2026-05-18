@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dan Nguyen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── FLOATING NAV ──────────────────────────────────────── -->
+  <nav class="float-nav">
+    <div class="nav-pill">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ──────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+        <defs>
+          <radialGradient id="g-teal" cx="680" cy="390" r="460" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#14C4DC" stop-opacity="0.95"/>
+            <stop offset="45%"  stop-color="#0EA0B8" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#087A90" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="g-orange" cx="1000" cy="640" r="360" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#D04A10" stop-opacity="0.92"/>
+            <stop offset="45%"  stop-color="#D04A10" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#D04A10" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="g-sky" cx="920" cy="90" r="310" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#40B0E0" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#40B0E0" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="g-amber" cx="160" cy="720" r="300" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#D89010" stop-opacity="0.75"/>
+            <stop offset="100%" stop-color="#D89010" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="g-deep" cx="1120" cy="380" r="240" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#043A58" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#043A58" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="grain">
+            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
+            <feColorMatrix type="saturate" values="0" in="noise"/>
+          </filter>
+        </defs>
+        <rect width="1200" height="800" fill="#FFFFFF"/>
+        <ellipse cx="680"  cy="390" rx="530" ry="500" fill="url(#g-teal)"/>
+        <ellipse cx="1000" cy="640" rx="400" ry="360" fill="url(#g-orange)"/>
+        <ellipse cx="920"  cy="90"  rx="320" ry="240" fill="url(#g-sky)"/>
+        <ellipse cx="160"  cy="720" rx="300" ry="260" fill="url(#g-amber)"/>
+        <ellipse cx="1120" cy="380" rx="240" ry="280" fill="url(#g-deep)"/>
+        <g fill="none" stroke="#0A3040" stroke-width="0.9" opacity="0.18">
+          <rect x="170" y="95"  width="860" height="610" rx="2" transform="rotate(-5 600 400)"/>
+          <rect x="230" y="155" width="740" height="490" rx="2" transform="rotate(-5 600 400)"/>
+        </g>
+        <line x1="0" y1="402" x2="1200" y2="402" stroke="#B03808" stroke-width="0.6" opacity="0.18"/>
+        <line x1="0" y1="418" x2="1200" y2="418" stroke="#B03808" stroke-width="0.35" opacity="0.11"/>
+        <rect width="1200" height="800" filter="url(#grain)" opacity="0.16" style="mix-blend-mode:overlay"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <h1>Dan<br>Nguyen</h1>
+      <div class="hero-sub">
+        <span>Business Analyst</span>
+        <span class="dot">·</span>
+        <span>Orange County, CA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT (inside main for content width) ─────────────── -->
+  <main>
+    <section class="about" id="about">
+      <div class="about-deco" aria-hidden="true">
+        <svg viewBox="0 0 900 400" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="820" cy="200" r="360" stroke="#18140F" stroke-width="0.8" opacity="0.07"/>
+          <circle cx="820" cy="200" r="280" stroke="#18140F" stroke-width="0.8" opacity="0.08"/>
+          <circle cx="820" cy="200" r="200" stroke="#18140F" stroke-width="0.8" opacity="0.09"/>
+          <circle cx="820" cy="200" r="120" stroke="#18140F" stroke-width="0.8" opacity="0.1"/>
+          <circle cx="820" cy="200" r="50"  stroke="#18140F" stroke-width="0.8" opacity="0.1"/>
+          <line x1="0" y1="200" x2="900" y2="200" stroke="#18140F" stroke-width="0.5" opacity="0.07"/>
+          <line x1="0" y1="120" x2="900" y2="120" stroke="#18140F" stroke-width="0.35" opacity="0.05" stroke-dasharray="10 5"/>
+          <line x1="0" y1="280" x2="900" y2="280" stroke="#18140F" stroke-width="0.35" opacity="0.05" stroke-dasharray="10 5"/>
+          <line x1="0" y1="60"  x2="900" y2="60"  stroke="#18140F" stroke-width="0.25" opacity="0.04" stroke-dasharray="6 8"/>
+          <line x1="0" y1="340" x2="900" y2="340" stroke="#18140F" stroke-width="0.25" opacity="0.04" stroke-dasharray="6 8"/>
+          <line x1="820" y1="0" x2="820" y2="400" stroke="#18140F" stroke-width="0.4" opacity="0.06"/>
+          <line x1="200" y1="195" x2="200" y2="205" stroke="#18140F" stroke-width="0.6" opacity="0.08"/>
+          <line x1="400" y1="195" x2="400" y2="205" stroke="#18140F" stroke-width="0.6" opacity="0.08"/>
+          <line x1="600" y1="195" x2="600" y2="205" stroke="#18140F" stroke-width="0.6" opacity="0.08"/>
+        </svg>
+      </div>
+      <h2 class="section-title">About</h2>
+      <div class="about-body">
+        <p>I build strategy, optimize processes, and make sense of complex systems. Currently, I'm a Business Analyst at Hyundai focusing on corporate IT strategy. As a UC Irvine Business Econ alum, I've spent my career operating at the cross-section of marketing, operations, and program management to make businesses run smarter.</p>
+        <p>What you'll find here are the curiosity-driven passion projects—mostly data analysis and visualization—that I build just to see how the world works. Off the clock, I channel that same high energy into fitness, basketball, cooking, and chasing winters on a snowboard.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── SKILLS (full-width) ───────────────────────────────── -->
+  <section class="skills" id="skills">
+    <div class="skills-bg-art" aria-hidden="true">
+      <svg viewBox="0 0 1100 520" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="skillgrid" x="0" y="0" width="44" height="44" patternUnits="userSpaceOnUse">
+            <circle cx="0" cy="0" r="1.2" fill="#1A8FA0" opacity="0.14"/>
+          </pattern>
+        </defs>
+        <rect width="1100" height="520" fill="url(#skillgrid)"/>
+        <!-- Teal PCB traces -->
+        <g stroke="#1A8FA0" opacity="0.16" stroke-linecap="round" stroke-width="1">
+          <line x1="550" y1="0"   x2="550" y2="520"/>
+          <line x1="0"   y1="260" x2="1100" y2="260"/>
+          <line x1="660" y1="100" x2="880" y2="100"/>
+          <line x1="880" y1="100" x2="880" y2="220"/>
+          <line x1="880" y1="220" x2="1000" y2="220"/>
+          <line x1="660" y1="380" x2="820" y2="380"/>
+          <line x1="820" y1="380" x2="820" y2="300"/>
+          <line x1="820" y1="300" x2="950" y2="300"/>
+          <line x1="660" y1="160" x2="750" y2="160"/>
+          <line x1="750" y1="160" x2="750" y2="100"/>
+          <line x1="660" y1="440" x2="760" y2="440"/>
+          <line x1="760" y1="440" x2="760" y2="380"/>
+        </g>
+        <!-- Orange accent traces -->
+        <g stroke="#C75B2A" opacity="0.13" stroke-linecap="round" stroke-width="1">
+          <line x1="120" y1="120" x2="320" y2="120"/>
+          <line x1="120" y1="120" x2="120" y2="240"/>
+          <line x1="120" y1="240" x2="220" y2="240"/>
+          <line x1="220" y1="240" x2="220" y2="340"/>
+          <line x1="220" y1="340" x2="380" y2="340"/>
+          <line x1="380" y1="200" x2="380" y2="340"/>
+          <line x1="320" y1="120" x2="380" y2="200"/>
+          <line x1="440" y1="420" x2="550" y2="420"/>
+          <line x1="440" y1="340" x2="440" y2="420"/>
+        </g>
+        <!-- Teal component boxes -->
+        <rect x="600" y="200" width="60" height="40" stroke="#1A8FA0" stroke-width="1" opacity="0.18" fill="none"/>
+        <rect x="700" y="280" width="44" height="30" stroke="#1A8FA0" stroke-width="0.8" opacity="0.14" fill="none"/>
+        <rect x="860" y="160" width="50" height="35" stroke="#1A8FA0" stroke-width="0.8" opacity="0.14" fill="none"/>
+        <!-- Orange dashed component boxes -->
+        <rect x="150" y="180" width="50" height="36" stroke="#C75B2A" stroke-width="0.8" stroke-dasharray="4 3" opacity="0.18" fill="none"/>
+        <rect x="280" y="280" width="40" height="30" stroke="#C75B2A" stroke-width="0.7" stroke-dasharray="3 3" opacity="0.14" fill="none"/>
+        <!-- Teal nodes -->
+        <g fill="#1A8FA0" opacity="0.2">
+          <circle cx="660" cy="100" r="3.5"/>
+          <circle cx="660" cy="220" r="3.5"/>
+          <circle cx="660" cy="380" r="3.5"/>
+          <circle cx="550" cy="260" r="3.5"/>
+          <circle cx="880" cy="100" r="3"/>
+          <circle cx="820" cy="300" r="3"/>
+        </g>
+        <!-- Orange nodes -->
+        <g fill="#C75B2A" opacity="0.18">
+          <circle cx="120" cy="120" r="3.5"/>
+          <circle cx="220" cy="240" r="3"/>
+          <circle cx="380" cy="200" r="3"/>
+          <circle cx="380" cy="340" r="3"/>
+          <circle cx="440" cy="340" r="3"/>
+        </g>
+        <!-- Registration marks -->
+        <g stroke="#1A8FA0" stroke-width="0.8" opacity="0.18">
+          <path d="M20 40 L20 20 L40 20"/>
+          <path d="M1080 40 L1080 20 L1060 20"/>
+          <path d="M20 480 L20 500 L40 500"/>
+          <path d="M1080 480 L1080 500 L1060 500"/>
+        </g>
+      </svg>
+    </div>
+    <div class="skills-inner">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-layout">
+        <div class="skills-grid">
+
+          <div class="skill-group">
+            <h3 class="skill-group-title">
+              <svg class="skill-title-icon" viewBox="0 0 14 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="1" y="8.5" width="3" height="5" rx="0.5"/>
+                <rect x="5.5" y="5" width="3" height="8.5" rx="0.5"/>
+                <rect x="10" y="2" width="3" height="11.5" rx="0.5"/>
+              </svg>
+              Data &amp; BI
+            </h3>
+            <ul>
+              <li>Power BI · DAX · Tableau</li>
+              <li>SQL · MySQL · BigQuery</li>
+              <li>Python · Power Query · Excel</li>
+              <li>Data Analysis · KPI Reporting</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="skill-group-title">
+              <svg class="skill-title-icon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <line x1="1" y1="3.5" x2="13" y2="3.5"/>
+                <line x1="1" y1="7" x2="13" y2="7"/>
+                <line x1="1" y1="10.5" x2="13" y2="10.5"/>
+                <circle cx="4" cy="3.5" r="1.5" fill="currentColor" stroke="none"/>
+                <circle cx="9" cy="7" r="1.5" fill="currentColor" stroke="none"/>
+                <circle cx="6" cy="10.5" r="1.5" fill="currentColor" stroke="none"/>
+              </svg>
+              Workflow &amp; Systems
+            </h3>
+            <ul>
+              <li>Power Apps · Power Automate</li>
+              <li>SharePoint · ServiceNow · Asana</li>
+              <li>SAP · Oracle · Salesforce</li>
+              <li>HubSpot · Zendesk</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="skill-group-title">
+              <svg class="skill-title-icon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M7 1.5 C4.5 1.5 2.5 3.5 2.5 6 C2.5 7.6 3.4 8.9 4.8 9.6 L5 11 L9 11 L9.2 9.6 C10.6 8.9 11.5 7.6 11.5 6 C11.5 3.5 9.5 1.5 7 1.5 Z"/>
+                <line x1="5" y1="12" x2="9" y2="12"/>
+                <line x1="5.5" y1="13" x2="8.5" y2="13"/>
+              </svg>
+              Business &amp; Creative
+            </h3>
+            <ul>
+              <li>Program &amp; Project Management</li>
+              <li>Business Process Improvement</li>
+              <li>SEO · Google Analytics</li>
+              <li>Photoshop · Canva · Premiere</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="skills-art" aria-hidden="true">
+          <svg viewBox="0 0 480 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="dotgrid2" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                <circle cx="0" cy="0" r="1.3" fill="#18140F" opacity="0.18"/>
+              </pattern>
+            </defs>
+            <rect width="480" height="320" fill="url(#dotgrid2)"/>
+            <g stroke="#18140F" opacity="0.22" stroke-linecap="round" stroke-width="1">
+              <line x1="40"  y1="120" x2="188" y2="120"/>
+              <line x1="232" y1="120" x2="380" y2="120"/>
+              <line x1="40"  y1="200" x2="148" y2="200"/>
+              <line x1="332" y1="200" x2="440" y2="200"/>
+              <line x1="120" y1="60"  x2="120" y2="160"/>
+              <line x1="360" y1="60"  x2="360" y2="160"/>
+              <line x1="240" y1="120" x2="240" y2="200"/>
+              <line x1="148" y1="200" x2="178" y2="170"/>
+              <line x1="178" y1="170" x2="212" y2="170"/>
+              <line x1="212" y1="170" x2="240" y2="200"/>
+              <line x1="268" y1="170" x2="302" y2="200"/>
+              <line x1="240" y1="170" x2="268" y2="170"/>
+              <line x1="40"  y1="260" x2="158" y2="260"/>
+              <line x1="322" y1="260" x2="440" y2="260"/>
+              <line x1="158" y1="200" x2="158" y2="260"/>
+              <line x1="322" y1="200" x2="322" y2="260"/>
+              <line x1="380" y1="120" x2="440" y2="142"/>
+            </g>
+            <rect x="188" y="88"  width="44" height="64" stroke="#18140F" stroke-width="1.3" opacity="0.3"/>
+            <g stroke="#18140F" opacity="0.22" stroke-width="0.9">
+              <line x1="165" y1="99"  x2="188" y2="99"/>
+              <line x1="165" y1="112" x2="188" y2="112"/>
+              <line x1="165" y1="126" x2="188" y2="126"/>
+              <line x1="165" y1="140" x2="188" y2="140"/>
+              <line x1="232" y1="99"  x2="255" y2="99"/>
+              <line x1="232" y1="112" x2="255" y2="112"/>
+              <line x1="232" y1="126" x2="255" y2="126"/>
+              <line x1="232" y1="140" x2="255" y2="140"/>
+            </g>
+            <rect x="328" y="168" width="32" height="64" stroke="#18140F" stroke-width="1" opacity="0.25"/>
+            <g stroke="#18140F" opacity="0.2" stroke-width="0.8">
+              <line x1="310" y1="178" x2="328" y2="178"/>
+              <line x1="310" y1="194" x2="328" y2="194"/>
+              <line x1="360" y1="178" x2="376" y2="178"/>
+              <line x1="360" y1="194" x2="376" y2="194"/>
+            </g>
+            <g fill="#18140F" opacity="0.28">
+              <circle cx="120" cy="120" r="3.5"/>
+              <circle cx="360" cy="120" r="3.5"/>
+              <circle cx="240" cy="200" r="3.5"/>
+              <circle cx="158" cy="200" r="3.5"/>
+              <circle cx="322" cy="200" r="3.5"/>
+            </g>
+            <polyline points="58,260 67,249 76,271 85,249 94,271 103,260" stroke="#18140F" stroke-width="0.9" opacity="0.22" fill="none"/>
+            <g stroke="#18140F" opacity="0.18" stroke-width="0.8">
+              <path d="M8 28 L8 8 L28 8"/>
+              <path d="M472 28 L472 8 L452 8"/>
+              <path d="M8 292 L8 312 L28 312"/>
+              <path d="M472 292 L472 312 L452 312"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE (full-width) ───────────────────────────── -->
+  <section class="experience" id="experience">
+    <div class="exp-bg-art" aria-hidden="true">
+      <svg viewBox="0 0 1100 480" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="exp-dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+            <circle cx="0" cy="0" r="1.1" fill="#C75B2A" opacity="0.13"/>
+          </pattern>
+        </defs>
+        <!-- Orange dot grid -->
+        <rect width="1100" height="480" fill="url(#exp-dots)"/>
+        <!-- Teal concentric arcs — right edge -->
+        <circle cx="1100" cy="240" r="380" stroke="#1A8FA0" stroke-width="1"   fill="none" opacity="0.1"/>
+        <circle cx="1100" cy="240" r="280" stroke="#1A8FA0" stroke-width="0.8" fill="none" opacity="0.09"/>
+        <circle cx="1100" cy="240" r="180" stroke="#1A8FA0" stroke-width="0.7" fill="none" opacity="0.08"/>
+        <circle cx="1100" cy="240" r="90"  stroke="#1A8FA0" stroke-width="0.6" fill="none" opacity="0.07"/>
+        <!-- Orange arcs — bottom-left corner -->
+        <circle cx="0" cy="480" r="340" stroke="#C75B2A" stroke-width="1"   fill="none" opacity="0.1"/>
+        <circle cx="0" cy="480" r="220" stroke="#C75B2A" stroke-width="0.8" fill="none" opacity="0.09"/>
+        <circle cx="0" cy="480" r="110" stroke="#C75B2A" stroke-width="0.7" fill="none" opacity="0.07"/>
+        <!-- Diagonal accent lines -->
+        <line x1="0"    y1="0"   x2="480" y2="480" stroke="#18140F" stroke-width="0.5" opacity="0.05"/>
+        <line x1="160"  y1="0"   x2="640" y2="480" stroke="#18140F" stroke-width="0.4" opacity="0.04"/>
+        <line x1="1100" y1="0"   x2="620" y2="480" stroke="#18140F" stroke-width="0.5" opacity="0.05"/>
+        <line x1="940"  y1="0"   x2="460" y2="480" stroke="#18140F" stroke-width="0.4" opacity="0.04"/>
+        <!-- Horizontal center line -->
+        <line x1="0" y1="240" x2="1100" y2="240" stroke="#18140F" stroke-width="0.4" opacity="0.05"/>
+        <!-- Rotated frame rectangle -->
+        <rect x="180" y="80" width="560" height="320" stroke="#1A8FA0" stroke-width="0.7" fill="none" opacity="0.09" transform="rotate(2 460 240)"/>
+        <!-- Accent nodes — teal -->
+        <circle cx="550" cy="55"  r="4"   fill="#1A8FA0" opacity="0.2"/>
+        <circle cx="220" cy="190" r="3"   fill="#1A8FA0" opacity="0.18"/>
+        <circle cx="880" cy="390" r="4"   fill="#1A8FA0" opacity="0.2"/>
+        <line x1="550" y1="50"  x2="550" y2="62"  stroke="#1A8FA0" stroke-width="0.8" opacity="0.2"/>
+        <line x1="545" y1="56"  x2="557" y2="56"  stroke="#1A8FA0" stroke-width="0.8" opacity="0.2"/>
+        <!-- Accent nodes — orange -->
+        <circle cx="360" cy="400" r="3.5" fill="#C75B2A" opacity="0.18"/>
+        <circle cx="820" cy="110" r="3"   fill="#C75B2A" opacity="0.16"/>
+        <line x1="360" y1="395" x2="360" y2="407" stroke="#C75B2A" stroke-width="0.8" opacity="0.2"/>
+        <line x1="354" y1="401" x2="366" y2="401" stroke="#C75B2A" stroke-width="0.8" opacity="0.2"/>
+        <!-- Registration marks -->
+        <path d="M28 40 L28 20 L48 20"   stroke="#C75B2A" stroke-width="0.9" opacity="0.22"/>
+        <path d="M1072 40 L1072 20 L1052 20" stroke="#C75B2A" stroke-width="0.9" opacity="0.22"/>
+        <path d="M28 440 L28 460 L48 460"   stroke="#1A8FA0" stroke-width="0.9" opacity="0.22"/>
+        <path d="M1072 440 L1072 460 L1052 460" stroke="#1A8FA0" stroke-width="0.9" opacity="0.22"/>
+      </svg>
+    </div>
+    <div class="exp-inner">
+      <h2 class="section-title">Experience</h2>
+      <div class="exp-wrapper">
+        <button class="exp-arrow" id="exp-prev" aria-label="Previous">←</button>
+        <div class="exp-track" id="exp-track">
+
+          <!-- Hyundai -->
+          <div class="exp-card">
+            <div class="exp-art">
+              <img src="hyundai.png" alt="Hyundai Motor Company">
+            </div>
+            <div class="exp-info">
+              <span class="exp-date">Jul 2024 – Present</span>
+              <h3 class="exp-company">Hyundai Motor Company</h3>
+              <p class="exp-role">Business Analyst</p>
+              <p class="exp-note">Corporate IT strategy · Power BI dashboards · $6M OPEX savings identified</p>
+            </div>
+          </div>
+
+          <!-- Panasonic -->
+          <div class="exp-card">
+            <div class="exp-art">
+              <img src="panasonic.png" alt="Panasonic">
+            </div>
+            <div class="exp-info">
+              <span class="exp-date">Jan 2023 – Jul 2024</span>
+              <h3 class="exp-company">Panasonic</h3>
+              <p class="exp-role">Program Operations Analyst</p>
+              <p class="exp-note">30+ programs · Boeing &amp; Airbus fleets · $250M revenue protected</p>
+            </div>
+          </div>
+
+          <!-- Planet DDS -->
+          <div class="exp-card">
+            <div class="exp-art">
+              <img src="planetdds.png" alt="Planet DDS">
+            </div>
+            <div class="exp-info">
+              <span class="exp-date">Aug 2019 – Nov 2022</span>
+              <h3 class="exp-company">Planet DDS</h3>
+              <p class="exp-role">Brand Marketing Associate</p>
+              <p class="exp-note">Brand audit · SEO · HubSpot · 2× organic traffic growth</p>
+            </div>
+          </div>
+
+          <!-- UCI -->
+          <div class="exp-card">
+            <div class="exp-art">
+              <img src="uci.png" alt="UC Irvine">
+            </div>
+            <div class="exp-info">
+              <span class="exp-date">Aug 2017 – Mar 2021</span>
+              <h3 class="exp-company">UC Irvine</h3>
+              <p class="exp-role">B.S. Business Economics</p>
+              <p class="exp-note">Donald Bren School of Social Sciences</p>
+            </div>
+          </div>
+
+        </div>
+        <button class="exp-arrow" id="exp-next" aria-label="Next">→</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS — dark ───────────────────────────────────── -->
+  <section class="projects-section" id="projects">
+    <div class="proj-bg-art" aria-hidden="true">
+      <svg viewBox="0 0 1100 700" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="pk-teal" cx="900" cy="150" r="350" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#5CCFCF" stop-opacity="0.09"/>
+            <stop offset="100%" stop-color="#5CCFCF" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="pk-orange" cx="200" cy="580" r="300" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#D04A10" stop-opacity="0.08"/>
+            <stop offset="100%" stop-color="#D04A10" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="900" cy="150" rx="380" ry="300" fill="url(#pk-teal)"/>
+        <ellipse cx="200" cy="580" rx="320" ry="260" fill="url(#pk-orange)"/>
+        <g stroke="#5CCFCF" opacity="0.06" stroke-width="0.8">
+          <rect x="60"  y="60"  width="980" height="580" rx="2" transform="rotate(-3 550 350)"/>
+          <rect x="120" y="120" width="860" height="460" rx="2" transform="rotate(-3 550 350)"/>
+        </g>
+        <line x1="0"   y1="350" x2="1100" y2="350" stroke="#5CCFCF" stroke-width="0.4" opacity="0.06"/>
+        <line x1="550" y1="0"   x2="550"  y2="700" stroke="#5CCFCF" stroke-width="0.4" opacity="0.04"/>
+      </svg>
+    </div>
+    <div class="projects-inner">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-showcase">
+        <article class="project-featured" id="project-featured"></article>
+        <div class="project-side">
+          <article class="project-small" id="project-side-1"></article>
+          <article class="project-small" id="project-side-2"></article>
+        </div>
+      </div>
+      <div class="project-nav">
+        <button class="proj-arrow" id="proj-prev">←</button>
+        <span class="proj-counter" id="proj-counter"></span>
+        <button class="proj-arrow" id="proj-next">→</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-name">Dan Nguyen</span>
+    <div class="footer-links">
+      <!-- Drop your resume PDF into this folder named "resume.pdf" to activate this link -->
+      <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="https://www.linkedin.com/in/danmnguyen/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/dannguyen0" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </footer>
+
+  <script src="projects.js"></script>
+  <script>
+    const ICONS = {
+      movie: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="7" y="19" width="42" height="28" rx="2"/>
+        <rect x="7" y="12" width="42" height="10" rx="1"/>
+        <line x1="18" y1="12" x2="14" y2="22"/><line x1="30" y1="12" x2="26" y2="22"/><line x1="42" y1="12" x2="38" y2="22"/>
+        <circle cx="28" cy="33" r="6"/><circle cx="28" cy="33" r="2"/>
+      </svg>`,
+      chart: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <line x1="9" y1="47" x2="47" y2="47"/><line x1="9" y1="9" x2="9" y2="47"/>
+        <rect x="14" y="28" width="9" height="19"/><rect x="27" y="17" width="9" height="30"/><rect x="40" y="22" width="9" height="25"/>
+      </svg>`,
+      food: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <line x1="20" y1="9" x2="20" y2="47"/><line x1="15" y1="9" x2="15" y2="23"/><line x1="25" y1="9" x2="25" y2="23"/>
+        <path d="M15 23 Q20 27 25 23"/>
+        <polygon points="38,10 40.5,18 49,18 42.5,23 45,31 38,26 31,31 33.5,23 27,18 35.5,18"/>
+      </svg>`,
+      store: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M10 26 L14 46 L42 46 L46 26 Z"/>
+        <path d="M19 26 C19 17 37 17 37 26"/>
+        <line x1="10" y1="26" x2="46" y2="26"/>
+        <line x1="22" y1="33" x2="22" y2="42"/><line x1="28" y1="33" x2="28" y2="42"/><line x1="34" y1="33" x2="34" y2="42"/>
+      </svg>`,
+      music: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <polyline points="4,28 10,16 16,40 22,12 28,44 34,18 40,32 46,22 52,28"/>
+      </svg>`,
+      scatter: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+        <line x1="9" y1="47" x2="47" y2="47"/><line x1="9" y1="9" x2="9" y2="47"/>
+        <circle cx="18" cy="40" r="2.5"/><circle cx="24" cy="30" r="2.5"/><circle cx="21" cy="44" r="2.5"/>
+        <circle cx="33" cy="22" r="2.5"/><circle cx="40" cy="17" r="2.5"/><circle cx="30" cy="33" r="2.5"/>
+        <line x1="13" y1="46" x2="44" y2="15" stroke-dasharray="3 2" opacity="0.5"/>
+      </svg>`,
+      globe: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <circle cx="28" cy="28" r="19"/>
+        <ellipse cx="28" cy="28" rx="9" ry="19"/>
+        <line x1="9" y1="28" x2="47" y2="28"/>
+        <path d="M12 18 Q28 13 44 18"/><path d="M12 38 Q28 43 44 38"/>
+      </svg>`,
+      plane: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M28 8 Q32 10 32 16 L32 50 Q30 53 28 53 Q26 53 24 50 L24 16 Q24 10 28 8 Z"/>
+        <path d="M26 30 L6 40 L9 45 L28 36 L47 45 L50 40 Z"/>
+        <path d="M26 46 L18 52 L28 49 L38 52 L30 46"/>
+      </svg>`
+    };
+
+    let projIndex = 0;
+    const total = PROJECTS.length;
+
+    function tagHTML(tags) {
+      return tags.map(t => `<span class="tag">${t}</span>`).join('');
+    }
+
+    function iconHTML(key, size) {
+      const svg = ICONS[key] || ICONS.chart;
+      return `<div class="card-icon" style="--icon-size:${size}px">${svg}</div>`;
+    }
+
+    function renderProjects() {
+      const p0 = PROJECTS[projIndex];
+      const p1 = PROJECTS[(projIndex + 1) % total];
+      const p2 = PROJECTS[(projIndex + 2) % total];
+
+      document.getElementById('project-featured').innerHTML = `
+        ${iconHTML(p0.icon, 72)}
+        <div class="card-tags">${tagHTML(p0.tags)}</div>
+        <h3 class="card-title featured-title">${p0.title}</h3>
+        <p class="card-desc">${p0.description}</p>
+        ${p0.link ? `<a class="card-link" href="${p0.link}" target="_blank" rel="noopener">View Project →</a>` : ''}
+      `;
+
+      [['project-side-1', p1], ['project-side-2', p2]].forEach(([id, p]) => {
+        document.getElementById(id).innerHTML = `
+          ${iconHTML(p.icon, 44)}
+          <div class="card-tags">${tagHTML(p.tags)}</div>
+          <h3 class="card-title">${p.title}</h3>
+          <p class="card-desc">${p.description}</p>
+          ${p.link ? `<a class="card-link" href="${p.link}" target="_blank" rel="noopener">View Project →</a>` : ''}
+        `;
+      });
+
+      document.getElementById('proj-counter').textContent = `${projIndex + 1} / ${total}`;
+    }
+
+    document.getElementById('proj-prev').addEventListener('click', () => {
+      projIndex = (projIndex - 1 + total) % total;
+      renderProjects();
+    });
+    document.getElementById('proj-next').addEventListener('click', () => {
+      projIndex = (projIndex + 1) % total;
+      renderProjects();
+    });
+
+    renderProjects();
+
+    const expTrack = document.getElementById('exp-track');
+    document.getElementById('exp-prev').addEventListener('click', () => {
+      expTrack.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+    document.getElementById('exp-next').addEventListener('click', () => {
+      expTrack.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+</html>
