@@ -6,10 +6,17 @@
    To REORDER:        cut a block and paste it where you want it
    Leave "link" as "" if you don't have a URL yet.
    Tags: keep them short — "Python", "SQL", "Tableau", etc.
-   Icon options: movie | chart | food | store | music | scatter | globe | plane
+   Icon options: movie | chart | food | store | music | scatter | globe | plane | bot
 ═══════════════════════════════════════════════════════════════ */
 
 const PROJECTS = [
+  {
+    "title": "Claude Trading Bot",
+    "description": "AI-powered options trading bot running three live strategies on AWS Lambda — credit spreads, TTM Squeeze momentum, and directional naked options. Claude Haiku acts as the scoring and decision engine, evaluating signals, news, and market regime before every trade. Full stack: DynamoDB, EventBridge, SNS alerts, API Gateway, and a live S3 dashboard.",
+    "tags": ["Python", "Claude AI", "AWS", "Options"],
+    "icon": "bot",
+    "link": "http://trading-bot-dashboard-975193805321.s3-website-us-east-1.amazonaws.com/"
+  },
   {
     "title": "Analysis on the Movie Industry",
     "description": "Exploratory data analysis examining whether films have improved over time in terms of ratings, genre trends, and box office performance.",
