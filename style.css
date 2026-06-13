@@ -439,8 +439,6 @@ main {
 /* Featured card */
 .project-featured {
   background-color: #FEFCF8;
-  background-image: radial-gradient(circle, rgba(165, 128, 72, 0.20) 1.2px, transparent 1.2px);
-  background-size: 13px 13px;
   border: 1px solid #DDD0BE;
   border-radius: 8px;
   padding: 2.5rem;
@@ -466,8 +464,6 @@ main {
 
 .project-small {
   background-color: #FEFCF8;
-  background-image: radial-gradient(circle, rgba(165, 128, 72, 0.18) 1px, transparent 1px);
-  background-size: 11px 11px;
   border: 1px solid #DDD0BE;
   border-radius: 8px;
   padding: 1.6rem;
@@ -621,8 +617,6 @@ main {
   border: 1px solid #DDD0BE;
   border-radius: 8px;
   background-color: #FEFCF8;
-  background-image: radial-gradient(circle, rgba(165, 128, 72, 0.18) 1px, transparent 1px);
-  background-size: 11px 11px;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .interest-card:hover {
