@@ -397,26 +397,18 @@ main {
 }
 .exp-arrow:hover { border-color: var(--orange); color: var(--orange); }
 
-/* ── Projects — teal/blue section ───────────────────────── */
+/* ── Projects — abstract gradient section ────────────────── */
 .projects-section {
   position: relative;
-  background: #EFF9FB;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(184, 234, 242, 0.65) 0%, transparent 48%),
+    radial-gradient(circle at 88% 12%, rgba(104, 144, 204, 0.50) 0%, transparent 52%),
+    radial-gradient(circle at 80% 85%, rgba(80, 168, 152, 0.45) 0%, transparent 50%),
+    radial-gradient(circle at 20% 88%, rgba(192, 180, 148, 0.40) 0%, transparent 48%),
+    radial-gradient(circle at 50% 48%, rgba(66, 176, 194, 0.30) 0%, transparent 60%),
+    #FAFAF8;
   padding: 3rem 0 5rem;
   overflow: hidden;
-}
-
-.proj-bg-art {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-.proj-bg-art svg {
-  width: 100%;
-  height: 100%;
-  display: block;
 }
 
 .projects-inner {
@@ -438,7 +430,7 @@ main {
 
 /* Featured card */
 .project-featured {
-  background-color: #F2FAFB;
+  background-color: #FFFFFF;
   border: 1px solid #B8D8E4;
   border-radius: 8px;
   padding: 2.5rem;
@@ -446,6 +438,7 @@ main {
   flex-direction: column;
   gap: 1rem;
   min-height: 340px;
+  box-shadow: 0 6px 28px rgba(40, 70, 90, 0.10);
   transition: border-color 0.22s, box-shadow 0.22s;
 }
 .project-featured:hover {
@@ -463,7 +456,7 @@ main {
 }
 
 .project-small {
-  background-color: #F2FAFB;
+  background-color: #FFFFFF;
   border: 1px solid #B8D8E4;
   border-radius: 8px;
   padding: 1.6rem;
@@ -471,6 +464,7 @@ main {
   flex-direction: column;
   gap: 0.65rem;
   flex: 1;
+  box-shadow: 0 4px 20px rgba(40, 70, 90, 0.08);
   transition: border-color 0.22s, box-shadow 0.22s;
 }
 .project-small:hover {
