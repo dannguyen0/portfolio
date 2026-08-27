@@ -22,7 +22,7 @@ const PROJECTS = [
     "description": "AI-powered options trading bot running three live strategies on AWS Lambda — credit spreads, TTM Squeeze momentum, and directional naked options. Claude Haiku acts as the scoring and decision engine, evaluating signals, news, and market regime before every trade. Full stack: DynamoDB, EventBridge, SNS alerts, API Gateway, and a live S3 dashboard.",
     "tags": ["Python", "Claude AI", "AWS", "Options"],
     "icon": "bot",
-    "link": "http://trading-bot-dashboard-975193805321.s3-website-us-east-1.amazonaws.com/"
+    "link": "https://dannguyen0.github.io/claude-trading-bot/"
   },
   {
     "title": "Analysis on the Movie Industry",
