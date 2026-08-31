@@ -25,6 +25,13 @@ const PROJECTS = [
     "link": "https://dannguyen0.github.io/claude-trading-bot/"
   },
   {
+    "title": "JobTrace",
+    "description": "Multi-user job-application tracker. Users connect Gmail over OAuth; an hourly GitHub Actions worker reads application-lifecycle email, classifies each message with an LLM (applied / rejected / interview / assessment / offer), and pairs events by company into a live win-rate dashboard — interactive status breakdown, per-row JD-link editing, Discord scorecards. Serverless on Netlify functions with no database: one JSON file per user in a private repo. Demo runs on synthetic data.",
+    "tags": ["JavaScript", "Python", "LLM", "OAuth", "Serverless"],
+    "icon": "chart",
+    "link": "jobtrace-demo/"
+  },
+  {
     "title": "Analysis on the Movie Industry",
     "description": "Exploratory data analysis examining whether films have improved over time in terms of ratings, genre trends, and box office performance.",
     "tags": ["Python", "EDA", "Pandas"],

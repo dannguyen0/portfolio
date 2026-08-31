@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JobTrace — interactive demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f5f6fa; --ink:#101322; --muted:#5b6472; --border:#e4e7ee;
+    --surface:#ffffff; --glass:rgba(255,255,255,.55); --track:#eceef4;
+    --shadow:0 1px 2px rgba(16,24,40,.05),0 18px 45px -12px rgba(16,24,40,.14);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0a0c11; --ink:#e8eaf0; --muted:#98a0b0; --border:#20242e;
+    --surface:#12151c; --glass:rgba(24,28,38,.5); --track:#191d26;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 24px 55px -14px rgba(0,0,0,.55);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0a0c11; --ink:#e8eaf0; --muted:#98a0b0; --border:#20242e;
+      --surface:#12151c; --glass:rgba(24,28,38,.5); --track:#191d26;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 24px 55px -14px rgba(0,0,0,.55);
+    }
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.55 'Inter',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;letter-spacing:-.005em;
+  }
+  .bg{position:fixed;inset:0;z-index:-1;overflow:hidden}
+  .bg::before,.bg::after{content:"";position:absolute;width:44vw;height:44vw;border-radius:50%;filter:blur(90px);opacity:.4}
+  .bg::before{background:#6366f1;top:-12vw;left:-8vw}
+  .bg::after{background:#0d9488;bottom:-16vw;right:-10vw}
+  a{color:inherit}
+  h1,h2,h3,.brand{font-family:'Space Grotesk','Inter',sans-serif;letter-spacing:-.02em}
+
+  .layout{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}
+  .sidebar{
+    position:sticky;top:0;height:100vh;overflow-y:auto;padding:22px 16px;
+    background:var(--glass);backdrop-filter:blur(18px) saturate(1.3);
+    -webkit-backdrop-filter:blur(18px) saturate(1.3);border-right:1px solid var(--border);
+  }
+  .brand{font-weight:700;font-size:19px;margin:2px 6px 4px}
+  .demobadge{margin:0 6px 6px;font-size:10.5px;font-weight:600;letter-spacing:.04em;color:#6366f1;background:color-mix(in srgb,#6366f1 16%,transparent);border:1px solid color-mix(in srgb,#6366f1 35%,transparent);border-radius:999px;padding:3px 9px;display:inline-block}
+  .brand b{color:#6366f1}
+  .sidelbl{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:14px 8px 6px}
+  .nav{display:flex;flex-direction:column;gap:3px}
+  .nav a{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:11px;text-decoration:none;color:var(--muted);font-weight:500;font-size:14px}
+  .nav a:hover{background:var(--track);color:var(--ink)}
+  .nav a.on{background:#6366f1;color:#fff}
+  .nav a .x{margin-left:auto;opacity:0;font-size:12px;border:0;background:transparent;color:inherit;cursor:pointer;padding:2px 5px;border-radius:6px}
+  .nav a:hover .x{opacity:.6}
+  .nav a .x:hover{opacity:1;background:rgba(255,255,255,.2)}
+  .side-foot{margin-top:20px;padding-top:16px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:6px}
+  .side-foot button,.side-foot a{display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font:inherit;font-size:13px;cursor:pointer;text-decoration:none}
+  .side-foot button:hover,.side-foot a:hover{color:var(--ink)}
+
+  .demobanner{grid-column:1/-1;background:color-mix(in srgb,#6366f1 12%,var(--surface));border-bottom:1px solid var(--border);padding:9px clamp(18px,3vw,46px);font-size:12.5px;color:var(--muted)}
+  .demobanner a{color:#6366f1;text-decoration:none;font-weight:600}
+  .demobanner a:hover{text-decoration:underline}
+  main{padding:26px clamp(18px,3vw,46px) 90px;min-width:0}
+  .phead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+  .phead h1{font-size:22px;margin:0}
+  .phead .sub{color:var(--muted);font-size:13px}
+
+  .metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:22px}
+  .metric{
+    --a:#6366f1;position:relative;border-radius:18px;padding:18px 18px 15px;
+    background:var(--glass);
+    background:color-mix(in srgb,var(--a) 24%,var(--glass));
+    border:1px solid var(--border);
+    border:1px solid color-mix(in srgb,var(--a) 45%,transparent);
+    backdrop-filter:blur(16px) saturate(1.5);-webkit-backdrop-filter:blur(16px) saturate(1.5);
+    box-shadow:0 10px 34px -10px color-mix(in srgb,var(--a) 45%,transparent),inset 0 1px 0 rgba(255,255,255,.18);
+  }
+  .metric .v{font-size:29px;font-weight:700;font-family:'Space Grotesk','Inter';line-height:1}
+  .metric .l{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;margin-top:8px;opacity:.85}
+  .metric{cursor:pointer;transition:transform .08s}
+  .metric:hover{transform:translateY(-1px)}
+  .metric.on{outline:2px solid var(--a);outline-offset:2px}
+
+  .panel{border-radius:18px;padding:22px 24px;margin-bottom:16px;background:var(--glass);border:1px solid var(--border);
+    backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);box-shadow:var(--shadow)}
+  .panel h3{margin:0 0 14px;font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-bottom:16px}
+  .cols>.panel{height:520px;display:flex;flex-direction:column;margin-bottom:0}
+  .cols>.panel .scroll{flex:1;min-height:0;overflow-y:auto;margin:0 -6px;padding:0 6px}
+
+  .feed{list-style:none;margin:0;padding:0}
+  .feed li{padding:8px 0;border-bottom:1px solid var(--border);font-size:13.5px}
+  .feed li:last-child{border-bottom:0}
+  .feed li.off{opacity:.3}
+  .feed li.hit b{color:inherit}
+  .feed li.hit .d,.feed li.hit .r{color:inherit;opacity:.7}
+  .feed .d{display:inline-block;min-width:50px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .feed .r{color:var(--muted)}
+
+  /* status breakdown */
+  .fchip{text-transform:none;letter-spacing:0;font-weight:600;color:var(--ink);font-size:12px;background:var(--track);
+    border-radius:999px;padding:2px 4px 2px 10px;display:inline-flex;align-items:center;gap:2px;vertical-align:middle}
+  .fchip button{border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:12px;padding:2px 6px;border-radius:999px;line-height:1}
+  .fchip button:hover{color:var(--ink);background:var(--border)}
+  .brow{display:flex;align-items:center;gap:10px;width:100%;border:0;background:transparent;color:inherit;font:inherit;text-align:left;padding:8px 6px;border-radius:9px;cursor:pointer}
+  .brow:hover{background:var(--track)}
+  .brow.sel{background:var(--track);outline:1px solid var(--border)}
+  .brow.dim{opacity:.3}
+  .blabel{font-weight:500;font-size:13.5px;min-width:104px;flex:none}
+  .bcount{font-weight:700;font-family:'Space Grotesk','Inter';font-variant-numeric:tabular-nums;font-size:13px;min-width:46px;text-align:right}
+  .bcount em{font-style:normal;color:var(--muted);font-weight:600}
+  .bbar{flex:1;height:12px;border-radius:6px;background:var(--track);overflow:hidden;max-width:320px}
+  .bbar span{display:block;height:100%;border-radius:6px}
+
+  .chart{display:flex;align-items:flex-end;gap:5px;height:150px}
+  .bw{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:4px}
+  .bc{width:64%;border-radius:5px 5px 0 0;background:linear-gradient(#818cf8,#6366f1);min-height:3px}
+  .bl{font-size:10px;color:var(--muted);white-space:nowrap}
+  .bv{font-size:11px;color:var(--muted)}
+
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--border)}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);cursor:pointer;white-space:nowrap}
+  tbody tr:hover{background:var(--track)}
+  td .co{font-weight:600}
+  td a.jd{color:#6366f1;text-decoration:none;font-weight:600}
+  td a.jd:hover{text-decoration:underline}
+  .addlink{border:0;background:transparent;color:var(--muted);cursor:pointer;font:inherit;font-size:13px;padding:0;text-decoration:underline dotted}
+  .addlink:hover{color:#6366f1}
+  .pill{display:inline-block;padding:2px 10px;border-radius:999px;color:#fff;font-size:12px;font-weight:600;white-space:nowrap}
+  .pencil{border:0;background:transparent;cursor:pointer;color:var(--muted);font-size:14px;padding:3px 7px;border-radius:6px}
+  .pencil:hover{color:var(--ink);background:var(--track)}
+  .tablewrap{overflow-x:auto}
+
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-size:12px;color:var(--muted)}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .legend i{width:10px;height:10px;border-radius:3px}
+
+  dialog{border:1px solid var(--border);border-radius:16px;background:var(--surface);color:var(--ink);padding:22px;max-width:420px;width:92vw;box-shadow:var(--shadow)}
+  dialog::backdrop{background:rgba(0,0,0,.45)}
+  dialog h3{margin:0 0 14px;font-size:16px}
+  dialog label{display:block;font-size:12.5px;font-weight:600;margin:12px 0 5px;color:var(--muted)}
+  dialog input,dialog select{width:100%;padding:9px 11px;border-radius:9px;border:1px solid var(--border);background:var(--bg);color:var(--ink);font:inherit;font-size:14px}
+  dialog .row{display:flex;gap:10px;margin-top:18px}
+  dialog .row button{flex:1;padding:10px;border-radius:9px;border:1px solid var(--border);font:inherit;font-weight:600;cursor:pointer;background:var(--surface);color:var(--ink)}
+  dialog .row button.primary{background:#6366f1;border-color:#6366f1;color:#fff}
+  dialog .danger{margin-top:14px;font-size:12.5px;display:flex;align-items:center;gap:6px}
+  dialog .danger input{width:auto}
+  #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:50}
+  #toast.show{opacity:.95}
+  .empty{padding:60px 20px;text-align:center;color:var(--muted)}
+
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr}
+    .sidebar{position:static;height:auto;border-right:0;border-bottom:1px solid var(--border)}
+    .metrics{grid-template-columns:repeat(2,1fr)}
+    .cols{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="layout">
+  <div class="demobanner">Portfolio demo of <b>JobTrace</b> — a multi-user job-application tracker. All data below is synthetic. The live version reads Gmail over OAuth, classifies mail with an LLM, and runs an hourly worker on GitHub Actions. &nbsp;<a href="../">← back to portfolio</a></div>
+  <aside class="sidebar">
+    <div class="brand">Job<b>Trace</b></div>
+    <div class="demobadge">DEMO · sample data</div>
+    <div class="sidelbl">Trackers</div>
+    <nav class="nav" id="nav"></nav>
+    <div class="side-foot">
+      <button id="addBtn" type="button">＋ Add a tracker</button>
+      <button id="themeBtn" type="button">◐ Theme</button>
+    </div>
+  </aside>
+  <main id="main"><div class="empty">Loading…</div></main>
+</div>
+
+<dialog id="dlg">
+  <h3>Edit — <span id="dlgCo"></span></h3>
+  <label>Role / title</label>
+  <input id="dlgRole" placeholder="e.g. Senior Data Analyst">
+  <label>Job description link</label>
+  <input id="dlgLink" placeholder="https://…  (blank to clear)">
+  <label>Status override</label>
+  <select id="dlgStatus">
+    <option value="">— auto —</option>
+    <option value="waiting">Waiting</option>
+    <option value="in_progress">In progress</option>
+    <option value="assessment">Assessment</option>
+    <option value="interviewing">Interviewing</option>
+    <option value="offer">Offer</option>
+    <option value="rejected">Rejected</option>
+    <option value="ghosted">Ghosted</option>
+  </select>
+  <label class="danger"><input type="checkbox" id="dlgHide">Remove this application from tracking</label>
+  <div class="row">
+    <button type="button" id="dlgCancel">Cancel</button>
+    <button type="button" id="dlgSave" class="primary">Save</button>
+  </div>
+</dialog>
+
+<div id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var GHOST_DAYS = 21;
+  var DEMO = {"a1b2c3d4e5f60718":{"slug":"a1b2c3d4e5f60718","name":"Maya Chen","email":"maya.chen.demo@example.com","keywords":"Data Analyst, BI Analyst, Analytics Engineer","updated_at":"2026-08-30T13:17:00+00:00","ledger":{"applications":{"sardine":{"company":"Sardine","roles":["BI Analyst"],"applied_at":"2026-06-19","first_response_at":"2026-07-01","reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":true,"rejected_at":"2026-07-01","jd_link":"https://boards.greenhouse.io/sardine/jobs/4770753","jd_link_source":"email","status_override":"","events":[{"date":"2026-06-20T12:10:00+00:00","type":"application_received","subject":"Thanks for applying to Sardine","from":"no-reply@job-boards.greenhouse.io"},{"date":"2026-07-01T08:15:00+00:00","type":"rejection","subject":"Update on your application to Sardine","from":"recruiting@sardine.com"}]},"grammarly":{"company":"Grammarly","roles":["Data Analyst"],"applied_at":"2026-06-29","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-06-30T08:33:00+00:00","type":"application_received","subject":"Thanks for applying to Grammarly","from":"no-reply@jobs.lever.co"}]},"plaid":{"company":"Plaid","roles":["Data Analyst"],"applied_at":"2026-06-19","first_response_at":"2026-06-27","reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":true,"rejected_at":"2026-06-27","jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-06-27T19:18:00+00:00","type":"rejection","subject":"Update on your application to Plaid","from":"recruiting@plaid.com"}]},"chime":{"company":"Chime","roles":["Senior Data Analyst"],"applied_at":"2026-07-11","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-12T13:39:00+00:00","type":"application_received","subject":"Thanks for applying to Chime","from":"no-reply@jobs.lever.co"}]},"stripe":{"company":"Stripe","roles":["Business Intelligence Analyst"],"applied_at":"2026-08-26","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-26T14:00:00+00:00","type":"application_received","subject":"Thanks for applying to Stripe","from":"no-reply@jobs.lever.co"}]},"persona":{"company":"Persona","roles":["Senior Data Analyst"],"applied_at":"2026-07-07","first_response_at":"2026-07-18","reached_assessment":false,"reached_interview":true,"got_offer":true,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-07T12:26:00+00:00","type":"application_received","subject":"Thanks for applying to Persona","from":"no-reply@boards.greenhouse.io"},{"date":"2026-07-18T15:37:00+00:00","type":"interview_invite","subject":"Next steps with Persona","from":"talent@persona.com"},{"date":"2026-07-19T09:47:00+00:00","type":"interview_invite","subject":"Next steps with Persona","from":"talent@persona.com"},{"date":"2026-07-24T14:37:00+00:00","type":"interview_invite","subject":"Interview confirmation \u2014 Persona","from":"talent@persona.com"},{"date":"2026-07-25T17:21:00+00:00","type":"interview_invite","subject":"Next steps with Persona","from":"talent@persona.com"},{"date":"2026-08-02T15:32:00+00:00","type":"offer","subject":"Your offer from Persona","from":"talent@persona.com"}]},"pinterest":{"company":"Pinterest","roles":["Senior Data Analyst"],"applied_at":"2026-08-06","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-07T12:54:00+00:00","type":"application_received","subject":"Thanks for applying to Pinterest","from":"no-reply@boards.greenhouse.io"}]},"vanta":{"company":"Vanta","roles":["Senior Data Analyst"],"applied_at":"2026-07-08","first_response_at":"2026-07-23","reached_assessment":false,"reached_interview":true,"got_offer":true,"rejected":false,"rejected_at":null,"jd_link":"https://vanta.com/careers/4499433","jd_link_source":"email","status_override":"","events":[{"date":"2026-07-09T14:01:00+00:00","type":"application_received","subject":"Thanks for applying to Vanta","from":"no-reply@job-boards.greenhouse.io"},{"date":"2026-07-23T08:50:00+00:00","type":"interview_invite","subject":"Scheduling your Vanta onsite","from":"talent@vanta.com"},{"date":"2026-07-23T13:30:00+00:00","type":"interview_invite","subject":"Interview confirmation \u2014 Vanta","from":"talent@vanta.com"},{"date":"2026-07-23T18:12:00+00:00","type":"interview_invite","subject":"Next steps with Vanta","from":"talent@vanta.com"},{"date":"2026-07-30T11:17:00+00:00","type":"interview_invite","subject":"Reminder: your interview with Vanta","from":"talent@vanta.com"},{"date":"2026-08-05T11:42:00+00:00","type":"offer","subject":"Your offer from Vanta","from":"talent@vanta.com"}]},"rippling":{"company":"Rippling","roles":["Analytics Engineer"],"applied_at":"2026-08-03","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://rippling.com/careers/4281391","jd_link_source":"email","status_override":"","events":[{"date":"2026-08-03T13:10:00+00:00","type":"application_received","subject":"Thanks for applying to Rippling","from":"no-reply@jobs.lever.co"}]},"alloy":{"company":"Alloy","roles":["Analytics Engineer"],"applied_at":"2026-08-01","first_response_at":"2026-08-13","reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":true,"rejected_at":"2026-08-13","jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-01T16:20:00+00:00","type":"application_received","subject":"Thanks for applying to Alloy","from":"no-reply@boards.greenhouse.io"},{"date":"2026-08-13T08:23:00+00:00","type":"rejection","subject":"Update on your application to Alloy","from":"recruiting@alloy.com"}]},"deel":{"company":"Deel","roles":["Business Intelligence Analyst"],"applied_at":"2026-08-06","first_response_at":"2026-08-15","reached_assessment":false,"reached_interview":true,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-06T12:09:00+00:00","type":"application_received","subject":"Thanks for applying to Deel","from":"no-reply@jobs.lever.co"},{"date":"2026-08-15T16:45:00+00:00","type":"interview_invite","subject":"Reminder: your interview with Deel","from":"talent@deel.com"},{"date":"2026-08-21T19:21:00+00:00","type":"interview_invite","subject":"Next steps with Deel","from":"talent@deel.com"},{"date":"2026-08-22T13:12:00+00:00","type":"interview_invite","subject":"Interview confirmation \u2014 Deel","from":"talent@deel.com"}]},"warby parker":{"company":"Warby Parker","roles":["Analytics Engineer"],"applied_at":"2026-07-31","first_response_at":"2026-08-16","reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":true,"rejected_at":"2026-08-16","jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-31T16:20:00+00:00","type":"application_received","subject":"Thanks for applying to Warby Parker","from":"no-reply@jobs.lever.co"},{"date":"2026-08-16T14:06:00+00:00","type":"rejection","subject":"Update on your application to Warby Parker","from":"recruiting@warbyparker.com"}]},"peloton":{"company":"Peloton","roles":["Business Intelligence Analyst"],"applied_at":"2026-08-09","first_response_at":"2026-08-25","reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":true,"rejected_at":"2026-08-25","jd_link":"https://peloton.com/careers/4239319","jd_link_source":"email","status_override":"","events":[{"date":"2026-08-10T14:28:00+00:00","type":"application_received","subject":"Thanks for applying to Peloton","from":"no-reply@jobs.ashbyhq.com"},{"date":"2026-08-25T12:17:00+00:00","type":"rejection","subject":"Update on your application to Peloton","from":"recruiting@peloton.com"}]},"zapier":{"company":"Zapier","roles":["Data Analyst"],"applied_at":"2026-08-23","first_response_at":"2026-08-29","reached_assessment":false,"reached_interview":true,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://job-boards.greenhouse.io/zapier/jobs/4497524","jd_link_source":"email","status_override":"","events":[{"date":"2026-08-23T11:36:00+00:00","type":"application_received","subject":"Thanks for applying to Zapier","from":"no-reply@jobs.lever.co"},{"date":"2026-08-30T11:16:00+00:00","type":"interview_invite","subject":"Interview confirmation \u2014 Zapier","from":"talent@zapier.com"},{"date":"2026-08-30T12:12:00+00:00","type":"interview_invite","subject":"Scheduling your Zapier onsite","from":"talent@zapier.com"}]},"mercury":{"company":"Mercury","roles":["Data Analyst"],"applied_at":"2026-07-21","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-22T15:17:00+00:00","type":"application_received","subject":"Thanks for applying to Mercury","from":"no-reply@boards.greenhouse.io"}]},"miro":{"company":"Miro","roles":["Senior Data Analyst"],"applied_at":"2026-08-18","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-19T10:44:00+00:00","type":"application_received","subject":"Thanks for applying to Miro","from":"no-reply@jobs.lever.co"}]},"squarespace":{"company":"Squarespace","roles":["Business Intelligence Analyst"],"applied_at":"2026-08-18","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-19T09:21:00+00:00","type":"application_received","subject":"Thanks for applying to Squarespace","from":"no-reply@boards.greenhouse.io"}]},"airbnb":{"company":"Airbnb","roles":["Senior Data Analyst"],"applied_at":"2026-08-17","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[]},"webflow":{"company":"Webflow","roles":["Business Intelligence Analyst"],"applied_at":"2026-06-20","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-06-21T17:38:00+00:00","type":"application_received","subject":"Thanks for applying to Webflow","from":"no-reply@jobs.ashbyhq.com"}]},"carta":{"company":"Carta","roles":["Analytics Engineer"],"applied_at":"2026-06-23","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://jobs.ashbyhq.com/carta/jobs/4079063","jd_link_source":"email","status_override":"","events":[{"date":"2026-06-24T10:03:00+00:00","type":"application_received","subject":"Thanks for applying to Carta","from":"no-reply@jobs.ashbyhq.com"}]},"mongodb":{"company":"MongoDB","roles":["Senior Data Analyst"],"applied_at":"2026-08-08","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-09T18:57:00+00:00","type":"application_received","subject":"Thanks for applying to MongoDB","from":"no-reply@boards.greenhouse.io"}]},"calm":{"company":"Calm","roles":["Data Analyst"],"applied_at":"2026-06-29","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://jobs.lever.co/calm/jobs/4213010","jd_link_source":"email","status_override":"","events":[{"date":"2026-06-30T08:03:00+00:00","type":"application_received","subject":"Thanks for applying to Calm","from":"no-reply@jobs.lever.co"}]},"oura":{"company":"Oura","roles":["Analytics Engineer"],"applied_at":"2026-06-19","first_response_at":"2026-06-27","reached_assessment":true,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://jobs.lever.co/oura/jobs/4418168","jd_link_source":"email","status_override":"","events":[{"date":"2026-06-20T14:28:00+00:00","type":"application_received","subject":"Thanks for applying to Oura","from":"no-reply@jobs.ashbyhq.com"},{"date":"2026-06-27T15:30:00+00:00","type":"assessment_request","subject":"Oura: complete your online assessment","from":"assessments@oura.com"}]},"snowflake":{"company":"Snowflake","roles":["Data Analyst"],"applied_at":"2026-07-23","first_response_at":"2026-08-09","reached_assessment":false,"reached_interview":true,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-15T09:23:00+00:00","type":"interview_invite","subject":"Interview confirmation \u2014 Snowflake","from":"talent@snowflake.com"}]},"retool":{"company":"Retool","roles":["Senior Data Analyst"],"applied_at":"2026-08-22","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://retool.com/careers/4224783","jd_link_source":"email","status_override":"","events":[]},"discord":{"company":"Discord","roles":["BI Analyst"],"applied_at":"2026-07-06","first_response_at":"2026-07-24","reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":true,"rejected_at":"2026-07-24","jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-24T08:22:00+00:00","type":"rejection","subject":"Update on your application to Discord","from":"recruiting@discord.com"}]},"instacart":{"company":"Instacart","roles":["Senior Data Analyst"],"applied_at":"2026-08-08","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-09T17:58:00+00:00","type":"application_received","subject":"Thanks for applying to Instacart","from":"no-reply@jobs.lever.co"}]},"airtable":{"company":"Airtable","roles":["Data Analyst"],"applied_at":"2026-06-26","first_response_at":"2026-07-15","reached_assessment":true,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-15T16:02:00+00:00","type":"assessment_request","subject":"Airtable: complete your online assessment","from":"assessments@airtable.com"}]},"twilio":{"company":"Twilio","roles":["Senior Data Analyst"],"applied_at":"2026-07-03","first_response_at":"2026-07-23","reached_assessment":false,"reached_interview":true,"got_offer":true,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-04T15:15:00+00:00","type":"application_received","subject":"Thanks for applying to Twilio","from":"no-reply@jobs.lever.co"},{"date":"2026-07-23T13:02:00+00:00","type":"interview_invite","subject":"Reminder: your interview with Twilio","from":"talent@twilio.com"},{"date":"2026-07-23T15:52:00+00:00","type":"interview_invite","subject":"Scheduling your Twilio onsite","from":"talent@twilio.com"},{"date":"2026-07-30T11:07:00+00:00","type":"interview_invite","subject":"Interview confirmation \u2014 Twilio","from":"talent@twilio.com"},{"date":"2026-07-30T13:22:00+00:00","type":"interview_invite","subject":"Scheduling your Twilio onsite","from":"talent@twilio.com"},{"date":"2026-08-02T12:53:00+00:00","type":"offer","subject":"Your offer from Twilio","from":"talent@twilio.com"}]}},"metrics":{"total":29,"responded":14,"response_rate":48,"assessments":2,"interviews":6,"interview_rate":21,"offers":3,"offer_rate":10,"rejections":6,"rejection_rate":21,"ghosted":10,"active":10}},"manual_overrides":{"Chime":{"jd_link":"https://jobs.lever.co/chime/jobs/4542689"},"Vanta":{"role":"Senior BI Analyst"}},"people":[{"slug":"a1b2c3d4e5f60718","name":"Maya Chen"},{"slug":"9f8e7d6c5b4a3021","name":"Devin Park"},{"slug":"c0ffee1234abcd5678","name":"Sofia Alvarez"}]},"9f8e7d6c5b4a3021":{"slug":"9f8e7d6c5b4a3021","name":"Devin Park","email":"devin.park.demo@example.com","keywords":"Revenue Operations, Sales Operations, GTM Analyst","updated_at":"2026-08-30T13:17:00+00:00","ledger":{"applications":{"retool":{"company":"Retool","roles":["Sales Operations Analyst"],"applied_at":"2026-08-26","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://job-boards.greenhouse.io/retool/jobs/4509583","jd_link_source":"email","status_override":"","events":[{"date":"2026-08-27T08:08:00+00:00","type":"application_received","subject":"Thanks for applying to Retool","from":"no-reply@jobs.lever.co"}]},"webflow":{"company":"Webflow","roles":["Revenue Operations Analyst"],"applied_at":"2026-07-11","first_response_at":"2026-07-31","reached_assessment":false,"reached_interview":true,"got_offer":false,"rejected":true,"rejected_at":"2026-08-09","jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-31T13:57:00+00:00","type":"interview_invite","subject":"Interview confirmation \u2014 Webflow","from":"talent@webflow.com"},{"date":"2026-08-09T14:29:00+00:00","type":"rejection","subject":"Following up on your Webflow interviews","from":"talent@webflow.com"}]},"gitlab":{"company":"GitLab","roles":["Revenue Operations Analyst"],"applied_at":"2026-07-17","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://jobs.lever.co/gitlab/jobs/4990224","jd_link_source":"email","status_override":"","events":[{"date":"2026-07-17T09:05:00+00:00","type":"application_received","subject":"Thanks for applying to GitLab","from":"no-reply@job-boards.greenhouse.io"}]},"coinbase":{"company":"Coinbase","roles":["Revenue Operations Analyst"],"applied_at":"2026-08-22","first_response_at":"2026-08-29","reached_assessment":false,"reached_interview":true,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-29T18:34:00+00:00","type":"interview_invite","subject":"Reminder: your interview with Coinbase","from":"talent@coinbase.com"}]},"mongodb":{"company":"MongoDB","roles":["Business Analyst"],"applied_at":"2026-07-17","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-17T15:42:00+00:00","type":"application_received","subject":"Thanks for applying to MongoDB","from":"no-reply@jobs.ashbyhq.com"}]},"snowflake":{"company":"Snowflake","roles":["GTM Analyst"],"applied_at":"2026-07-21","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-22T19:16:00+00:00","type":"application_received","subject":"Thanks for applying to Snowflake","from":"no-reply@jobs.ashbyhq.com"}]},"instacart":{"company":"Instacart","roles":["Revenue Operations Analyst"],"applied_at":"2026-07-19","first_response_at":"2026-08-04","reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":true,"rejected_at":"2026-08-04","jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-20T09:48:00+00:00","type":"application_received","subject":"Thanks for applying to Instacart","from":"no-reply@boards.greenhouse.io"},{"date":"2026-08-04T10:17:00+00:00","type":"rejection","subject":"Update on your application to Instacart","from":"recruiting@instacart.com"}]},"notion":{"company":"Notion","roles":["Revenue Operations Analyst"],"applied_at":"2026-07-11","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://jobs.lever.co/notion/jobs/4972355","jd_link_source":"email","status_override":"","events":[{"date":"2026-07-11T15:56:00+00:00","type":"application_received","subject":"Thanks for applying to Notion","from":"no-reply@job-boards.greenhouse.io"}]},"stripe":{"company":"Stripe","roles":["RevOps Analyst"],"applied_at":"2026-07-13","first_response_at":"2026-07-22","reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":true,"rejected_at":"2026-07-22","jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-14T18:05:00+00:00","type":"application_received","subject":"Thanks for applying to Stripe","from":"no-reply@boards.greenhouse.io"},{"date":"2026-07-22T13:35:00+00:00","type":"rejection","subject":"Update on your application to Stripe","from":"recruiting@stripe.com"}]},"warby parker":{"company":"Warby Parker","roles":["Business Analyst"],"applied_at":"2026-08-20","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-21T12:38:00+00:00","type":"application_received","subject":"Thanks for applying to Warby Parker","from":"no-reply@jobs.ashbyhq.com"}]},"datadog":{"company":"Datadog","roles":["Sales Operations Analyst"],"applied_at":"2026-08-21","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://jobs.lever.co/datadog/jobs/4224590","jd_link_source":"email","status_override":"","events":[{"date":"2026-08-22T15:38:00+00:00","type":"application_received","subject":"Thanks for applying to Datadog","from":"no-reply@job-boards.greenhouse.io"}]},"confluent":{"company":"Confluent","roles":["Sales Operations Analyst"],"applied_at":"2026-07-23","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-24T13:24:00+00:00","type":"application_received","subject":"Thanks for applying to Confluent","from":"no-reply@jobs.lever.co"}]},"airbnb":{"company":"Airbnb","roles":["Sales Operations Analyst"],"applied_at":"2026-08-14","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-15T12:34:00+00:00","type":"application_received","subject":"Thanks for applying to Airbnb","from":"no-reply@job-boards.greenhouse.io"}]},"pinterest":{"company":"Pinterest","roles":["RevOps Analyst"],"applied_at":"2026-07-29","first_response_at":"2026-08-04","reached_assessment":false,"reached_interview":true,"got_offer":false,"rejected":true,"rejected_at":"2026-08-19","jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-29T18:35:00+00:00","type":"application_received","subject":"Thanks for applying to Pinterest","from":"no-reply@job-boards.greenhouse.io"},{"date":"2026-08-04T09:20:00+00:00","type":"interview_invite","subject":"Interview confirmation \u2014 Pinterest","from":"talent@pinterest.com"},{"date":"2026-08-04T12:32:00+00:00","type":"interview_invite","subject":"Scheduling your Pinterest onsite","from":"talent@pinterest.com"},{"date":"2026-08-04T13:59:00+00:00","type":"interview_invite","subject":"Scheduling your Pinterest onsite","from":"talent@pinterest.com"},{"date":"2026-08-19T18:43:00+00:00","type":"rejection","subject":"Following up on your Pinterest interviews","from":"talent@pinterest.com"}]},"whoop":{"company":"Whoop","roles":["RevOps Analyst"],"applied_at":"2026-08-03","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-03T16:19:00+00:00","type":"application_received","subject":"Thanks for applying to Whoop","from":"no-reply@boards.greenhouse.io"}]},"canva":{"company":"Canva","roles":["Sales Operations Analyst"],"applied_at":"2026-07-10","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-10T12:41:00+00:00","type":"application_received","subject":"Thanks for applying to Canva","from":"no-reply@boards.greenhouse.io"}]},"faire":{"company":"Faire","roles":["Sales Operations Analyst"],"applied_at":"2026-08-02","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-03T18:25:00+00:00","type":"application_received","subject":"Thanks for applying to Faire","from":"no-reply@jobs.ashbyhq.com"}]},"rippling":{"company":"Rippling","roles":["Sales Operations Analyst"],"applied_at":"2026-07-10","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-11T17:54:00+00:00","type":"application_received","subject":"Thanks for applying to Rippling","from":"no-reply@job-boards.greenhouse.io"}]},"robinhood":{"company":"Robinhood","roles":["Revenue Operations Analyst"],"applied_at":"2026-07-24","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://robinhood.com/careers/4656039","jd_link_source":"email","status_override":"","events":[{"date":"2026-07-25T09:12:00+00:00","type":"application_received","subject":"Thanks for applying to Robinhood","from":"no-reply@jobs.ashbyhq.com"}]},"servicetitan":{"company":"ServiceTitan","roles":["Sales Operations Analyst"],"applied_at":"2026-08-25","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[]},"docusign":{"company":"DocuSign","roles":["Revenue Operations Analyst"],"applied_at":"2026-08-24","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-25T13:31:00+00:00","type":"application_received","subject":"Thanks for applying to DocuSign","from":"no-reply@boards.greenhouse.io"}]}},"metrics":{"total":21,"responded":5,"response_rate":24,"assessments":0,"interviews":3,"interview_rate":14,"offers":0,"offer_rate":0,"rejections":4,"rejection_rate":19,"ghosted":10,"active":7}},"manual_overrides":{},"people":[{"slug":"a1b2c3d4e5f60718","name":"Maya Chen"},{"slug":"9f8e7d6c5b4a3021","name":"Devin Park"},{"slug":"c0ffee1234abcd5678","name":"Sofia Alvarez"}]},"c0ffee1234abcd5678":{"slug":"c0ffee1234abcd5678","name":"Sofia Alvarez","email":"sofia.alvarez.demo@example.com","keywords":"Financial Analyst, FP&A, Strategic Finance","updated_at":"2026-08-30T13:17:00+00:00","ledger":{"applications":{"toast":{"company":"Toast","roles":["Financial Analyst"],"applied_at":"2026-08-14","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://boards.greenhouse.io/toast/jobs/4371698","jd_link_source":"email","status_override":"","events":[{"date":"2026-08-15T17:11:00+00:00","type":"application_received","subject":"Thanks for applying to Toast","from":"no-reply@jobs.lever.co"}]},"airbnb":{"company":"Airbnb","roles":["Financial Analyst"],"applied_at":"2026-08-25","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-25T19:50:00+00:00","type":"application_received","subject":"Thanks for applying to Airbnb","from":"no-reply@job-boards.greenhouse.io"}]},"servicetitan":{"company":"ServiceTitan","roles":["Strategic Finance Analyst"],"applied_at":"2026-06-25","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-06-25T08:41:00+00:00","type":"application_received","subject":"Thanks for applying to ServiceTitan","from":"no-reply@boards.greenhouse.io"}]},"stripe":{"company":"Stripe","roles":["Business Analyst"],"applied_at":"2026-06-14","first_response_at":"2026-07-03","reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":true,"rejected_at":"2026-07-03","jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-06-14T09:04:00+00:00","type":"application_received","subject":"Thanks for applying to Stripe","from":"no-reply@jobs.lever.co"},{"date":"2026-07-03T08:02:00+00:00","type":"rejection","subject":"Update on your application to Stripe","from":"recruiting@stripe.com"}]},"alloy":{"company":"Alloy","roles":["Strategic Finance Analyst"],"applied_at":"2026-07-18","first_response_at":"2026-08-09","reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":true,"rejected_at":"2026-08-09","jd_link":"https://jobs.ashbyhq.com/alloy/jobs/4487594","jd_link_source":"email","status_override":"","events":[{"date":"2026-07-19T12:33:00+00:00","type":"application_received","subject":"Thanks for applying to Alloy","from":"no-reply@job-boards.greenhouse.io"},{"date":"2026-08-09T10:46:00+00:00","type":"rejection","subject":"Update on your application to Alloy","from":"recruiting@alloy.com"}]},"pinterest":{"company":"Pinterest","roles":["FP&A Analyst"],"applied_at":"2026-06-11","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-06-11T14:54:00+00:00","type":"application_received","subject":"Thanks for applying to Pinterest","from":"no-reply@boards.greenhouse.io"}]},"rippling":{"company":"Rippling","roles":["Financial Analyst"],"applied_at":"2026-08-21","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-21T18:03:00+00:00","type":"application_received","subject":"Thanks for applying to Rippling","from":"no-reply@boards.greenhouse.io"}]},"chime":{"company":"Chime","roles":["Strategic Finance Analyst"],"applied_at":"2026-06-17","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-06-18T18:39:00+00:00","type":"application_received","subject":"Thanks for applying to Chime","from":"no-reply@jobs.ashbyhq.com"}]},"databricks":{"company":"Databricks","roles":["FP&A Analyst"],"applied_at":"2026-08-08","first_response_at":"2026-08-23","reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":true,"rejected_at":"2026-08-23","jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-23T12:49:00+00:00","type":"rejection","subject":"Update on your application to Databricks","from":"recruiting@databricks.com"}]},"zapier":{"company":"Zapier","roles":["Business Analyst"],"applied_at":"2026-08-05","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://boards.greenhouse.io/zapier/jobs/4835314","jd_link_source":"email","status_override":"","events":[{"date":"2026-08-06T10:35:00+00:00","type":"application_received","subject":"Thanks for applying to Zapier","from":"no-reply@job-boards.greenhouse.io"}]},"plaid":{"company":"Plaid","roles":["Financial Analyst"],"applied_at":"2026-08-18","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-08-19T14:39:00+00:00","type":"application_received","subject":"Thanks for applying to Plaid","from":"no-reply@jobs.ashbyhq.com"}]},"brex":{"company":"Brex","roles":["Financial Analyst"],"applied_at":"2026-08-13","first_response_at":"2026-08-29","reached_assessment":true,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://job-boards.greenhouse.io/brex/jobs/4075423","jd_link_source":"email","status_override":"","events":[{"date":"2026-08-14T19:08:00+00:00","type":"application_received","subject":"Thanks for applying to Brex","from":"no-reply@job-boards.greenhouse.io"},{"date":"2026-08-29T11:23:00+00:00","type":"assessment_request","subject":"Brex: complete your online assessment","from":"assessments@brex.com"}]},"twilio":{"company":"Twilio","roles":["FP&A Analyst"],"applied_at":"2026-08-12","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://boards.greenhouse.io/twilio/jobs/4145938","jd_link_source":"email","status_override":"","events":[{"date":"2026-08-12T19:09:00+00:00","type":"application_received","subject":"Thanks for applying to Twilio","from":"no-reply@jobs.ashbyhq.com"}]},"segment":{"company":"Segment","roles":["Business Analyst"],"applied_at":"2026-06-28","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-06-29T17:46:00+00:00","type":"application_received","subject":"Thanks for applying to Segment","from":"no-reply@jobs.lever.co"}]},"doordash":{"company":"DoorDash","roles":["FP&A Analyst"],"applied_at":"2026-07-08","first_response_at":"2026-07-20","reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":true,"rejected_at":"2026-07-20","jd_link":"https://job-boards.greenhouse.io/doordash/jobs/4784211","jd_link_source":"email","status_override":"","events":[{"date":"2026-07-09T14:28:00+00:00","type":"application_received","subject":"Thanks for applying to DoorDash","from":"no-reply@job-boards.greenhouse.io"},{"date":"2026-07-20T11:28:00+00:00","type":"rejection","subject":"Update on your application to DoorDash","from":"recruiting@doordash.com"}]},"grammarly":{"company":"Grammarly","roles":["Strategic Finance Analyst"],"applied_at":"2026-07-18","first_response_at":"2026-07-25","reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":true,"rejected_at":"2026-07-25","jd_link":"","jd_link_source":"","status_override":"","events":[{"date":"2026-07-19T19:10:00+00:00","type":"application_received","subject":"Thanks for applying to Grammarly","from":"no-reply@boards.greenhouse.io"},{"date":"2026-07-25T14:10:00+00:00","type":"rejection","subject":"Update on your application to Grammarly","from":"recruiting@grammarly.com"}]},"zoom":{"company":"Zoom","roles":["FP&A Analyst"],"applied_at":"2026-08-23","first_response_at":null,"reached_assessment":false,"reached_interview":false,"got_offer":false,"rejected":false,"rejected_at":null,"jd_link":"https://zoom.com/careers/4057198","jd_link_source":"email","status_override":"","events":[{"date":"2026-08-24T09:44:00+00:00","type":"application_received","subject":"Thanks for applying to Zoom","from":"no-reply@jobs.lever.co"}]}},"metrics":{"total":17,"responded":6,"response_rate":35,"assessments":1,"interviews":0,"interview_rate":0,"offers":0,"offer_rate":0,"rejections":5,"rejection_rate":29,"ghosted":5,"active":7}},"manual_overrides":{},"people":[{"slug":"a1b2c3d4e5f60718","name":"Maya Chen"},{"slug":"9f8e7d6c5b4a3021","name":"Devin Park"},{"slug":"c0ffee1234abcd5678","name":"Sofia Alvarez"}]}};
+  var FIRST = Object.keys(DEMO)[0];
+  var SLUG = (location.hash || "").slice(1);
+  if(!DEMO[SLUG]) SLUG = FIRST;
+  var THK = "jt-theme";
+  var DATA = null;
+
+  var STATUS = {
+    offer:["Offer","#16a34a"], interviewing:["Interviewing","#2563eb"],
+    assessment:["Assessment","#0d9488"], in_progress:["In progress","#7c3aed"],
+    waiting:["Waiting","#64748b"], ghosted:["Ghosted","#94a3b8"], rejected:["Rejected","#e11d48"]
+  };
+  var VERB = {
+    application_received:"Applied to", rejection:"Rejected by",
+    interview_invite:"Interview with", assessment_request:"Assessment from", offer:"Offer from"
+  };
+  var NOISE = /\b(inc|llc|ltd|limited|corp|corporation|co|company|holdings|group|technologies|technology|tech|labs|solutions|services|the|a|systems|global|international|usa|us)\b/gi;
+  function normKey(s){return String(s||"").toLowerCase().replace(/[^a-z0-9 ]+/g," ").replace(NOISE," ").replace(/\s+/g," ").trim();}
+
+  var esc = function(s){var d=document.createElement("div");d.textContent=s==null?"":String(s);return d.innerHTML;};
+  var toast = function(m){var t=document.getElementById("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove("show");},2800);};
+
+  function fmtDate(iso){
+    var d=new Date((iso||"").slice(0,10)+"T00:00:00");
+    if(isNaN(d))return (iso||"").slice(0,10);
+    return d.toLocaleDateString(undefined,{month:"short",day:"numeric"});
+  }
+  function fmtMonth(ym){
+    var d=new Date(ym+"-01T00:00:00");
+    return isNaN(d)?ym:d.toLocaleDateString(undefined,{month:"short",year:"numeric"});
+  }
+  function daysBetween(a,b){return Math.round((new Date(b)-new Date(a))/86400000);}
+
+  function deriveStatus(a){
+    if(a.status_override && STATUS[a.status_override]) return a.status_override;
+    if(a.got_offer) return "offer";
+    if(a.rejected) return "rejected";
+    if(a.reached_interview) return "interviewing";
+    if(a.reached_assessment) return "assessment";
+    if(a.first_response_at) return "in_progress";
+    if(a.applied_at){
+      var age=daysBetween(a.applied_at,new Date().toISOString().slice(0,10));
+      return age>GHOST_DAYS?"ghosted":"waiting";
+    }
+    return "waiting";
+  }
+  function lastActivity(a){
+    if(a.events&&a.events.length) return a.events.map(function(e){return e.date;}).sort().slice(-1)[0].slice(0,10);
+    return a.applied_at||"";
+  }
+
+  function displayApps(){
+    var apps=JSON.parse(JSON.stringify((DATA.ledger&&DATA.ledger.applications)||{}));
+    var ov=DATA.manual_overrides||{};
+    Object.keys(ov).forEach(function(raw){
+      if(raw[0]==="_")return;
+      var o=ov[raw]||{}, k=normKey(raw);
+      if(o.hide){delete apps[k];return;}
+      var r=apps[k]||(apps[k]={company:raw,roles:[],applied_at:null,first_response_at:null,
+        reached_assessment:false,reached_interview:false,got_offer:false,rejected:false,
+        rejected_at:null,jd_link:"",jd_link_source:"",status_override:"",events:[]});
+      if(o.jd_link){r.jd_link=o.jd_link;r.jd_link_source="manual";}
+      if(o.role&&r.roles.indexOf(o.role)<0)r.roles.unshift(o.role);
+      if(o.applied_at)r.applied_at=o.applied_at;
+      if(o.status)r.status_override=o.status;
+    });
+    return apps;
+  }
+
+  function weekly(list){
+    var weeks=12, now=new Date(), day=now.getDay()||7;
+    var start=new Date(now); start.setDate(now.getDate()-(day-1)-7*(weeks-1)); start.setHours(0,0,0,0);
+    var b=new Array(weeks).fill(0);
+    list.forEach(function(a){
+      if(!a.applied_at)return;
+      var d=new Date(a.applied_at+"T00:00:00"); if(isNaN(d))return;
+      var i=Math.floor((d-start)/(7*86400000));
+      if(i>=0&&i<weeks)b[i]++;
+    });
+    var labs=[];for(var i=0;i<weeks;i++){var x=new Date(start);x.setDate(start.getDate()+7*i);labs.push(x.toLocaleDateString(undefined,{month:"short",day:"numeric"}));}
+    return {labs:labs,b:b};
+  }
+
+  // ---------- filter + status breakdown ----------
+  var LIST = [];           // current display apps
+  var EVS = [];            // {e, a} activity events, newest first
+  var FILTER = null;       // {label, pred(a), card?, status?}
+
+  var PREDS = {
+    all: null,
+    responded: function(a){return !!(a.first_response_at||a.rejected||a.reached_interview||a.reached_assessment||a.got_offer);},
+    interview: function(a){return !!a.reached_interview;},
+    offers: function(a){return !!a.got_offer;},
+    rejections: function(a){return !!a.rejected;}
+  };
+  var CARD_LABEL = {responded:"Responded", interview:"Reached interview", offers:"Offer", rejections:"Rejected"};
+  var CARD_COLOR = {responded:"#2563eb", interview:"#0d9488", offers:"#16a34a", rejections:"#e11d48"};
+
+  function setCardFilter(card){
+    if(card==="all"||!PREDS[card]) FILTER=null;
+    else if(FILTER&&FILTER.card===card) FILTER=null;
+    else FILTER={card:card,label:CARD_LABEL[card],pred:PREDS[card],color:CARD_COLOR[card]};
+    paint();
+  }
+  function setStatusFilter(s){
+    if(FILTER&&FILTER.status===s) FILTER=null;
+    else FILTER={status:s,label:(STATUS[s]||[s])[0],pred:function(a){return deriveStatus(a)===s;},color:(STATUS[s]||[s,"#6366f1"])[1]};
+    paint();
+  }
+  function clearFilter(){FILTER=null;paint();}
+
+  function statusBuckets(){
+    var g={};
+    LIST.forEach(function(a){var s=deriveStatus(a);(g[s]=g[s]||[]).push(a);});
+    return Object.keys(g).map(function(s){return{s:s,items:g[s]};})
+      .sort(function(x,y){return y.items.length-x.items.length;});
+  }
+
+  function renderBreakdown(){
+    var head=document.getElementById("bdhead"), host=document.getElementById("bd");
+    if(!head||!host)return;
+    head.innerHTML='<h3>Breakdown by status'+
+      (FILTER?' <span class="fchip">'+esc(FILTER.label)+' <button id="fx" title="Clear">✕</button></span>':'')+'</h3>';
+    var root=LIST.length||1;
+    host.innerHTML=statusBuckets().map(function(b){
+      var meta=STATUS[b.s]||[b.s,"#6366f1"];
+      var matched=FILTER?b.items.filter(FILTER.pred).length:b.items.length;
+      var isSel=FILTER&&FILTER.status===b.s;
+      var lit=!FILTER||isSel||matched>0;
+      var pct=Math.round(100*b.items.length/root);
+      var cnt=b.items.length+((FILTER&&!isSel&&matched>0&&matched!==b.items.length)?' <em>('+matched+')</em>':'');
+      return '<button class="brow'+(lit?'':' dim')+(isSel?' sel':'')+'" data-st="'+b.s+'">'+
+        '<span class="blabel">'+meta[0]+'</span>'+
+        '<span class="bcount">'+cnt+'</span>'+
+        '<span class="bbar"><span style="width:'+Math.max(pct,2)+'%;background:'+meta[1]+'"></span></span></button>';
+    }).join("")||'<div class="r">Nothing to break down yet.</div>';
+
+    var fx=document.getElementById("fx");
+    if(fx) fx.addEventListener("click",clearFilter);
+    host.querySelectorAll(".brow").forEach(function(btn){
+      btn.addEventListener("click",function(){setStatusFilter(btn.getAttribute("data-st"));});
+    });
+  }
+
+  function renderActivity(){
+    var host=document.getElementById("feed");
+    if(!host)return;
+    var col=FILTER?FILTER.color:null;
+
+    // Collapse repeated (company, milestone) into one row — several emails for
+    // the same interview/rejection are one thing. EVS is already newest-first.
+    var byKey={}, rows=[];
+    EVS.forEach(function(o){
+      var k=o.a.company+"|"+o.e.type;
+      if(byKey[k]){byKey[k].n++;return;}
+      byKey[k]={date:o.e.date,type:o.e.type,a:o.a,n:1};
+      rows.push(byKey[k]);
+    });
+
+    host.innerHTML=rows.slice(0,60).map(function(r){
+      var on=!FILTER||FILTER.pred(r.a);
+      var role=(r.a.roles&&r.a.roles[0])?' <span class="r">— '+esc(r.a.roles[0])+'</span>':"";
+      var badge=r.n>1?' <span class="r">·&nbsp;'+r.n+' emails</span>':"";
+      var cls=on?(FILTER?"hit":""):"off";
+      var style=(on&&col)?' style="color:'+col+'"':"";
+      return '<li class="'+cls+'"'+style+'><span class="d">'+fmtDate(r.date)+'</span> '+
+        VERB[r.type]+' <b>'+esc(r.a.company)+'</b>'+role+badge+'</li>';
+    }).join("")||'<li class="r">No activity yet.</li>';
+  }
+
+  function paintCards(){
+    document.querySelectorAll(".metric[data-f]").forEach(function(el){
+      el.classList.toggle("on", !!FILTER && FILTER.card===el.getAttribute("data-f"));
+    });
+  }
+
+  function paint(){ renderBreakdown(); renderActivity(); paintCards(); }
+
+  function renderDash(){
+    var apps=displayApps();
+    var list=Object.keys(apps).map(function(k){return apps[k];});
+    var m=(DATA.ledger&&DATA.ledger.metrics)||{};
+    var mc=function(l,v,a,f){return '<div class="metric" style="--a:'+a+'" data-f="'+f+'"><div class="v">'+esc(v)+'</div><div class="l">'+esc(l)+'</div></div>';};
+
+    var cards=mc("Applications",m.total||0,"#6366f1","all")+
+      mc("Response rate",(m.response_rate||0)+"%","#2563eb","responded")+
+      mc("Interview rate",(m.interview_rate||0)+"%","#0d9488","interview")+
+      mc("Offers",m.offers||0,"#16a34a","offers")+
+      mc("Rejections",m.rejections||0,"#e11d48","rejections");
+
+    LIST=list.slice();
+    EVS=[];
+    list.forEach(function(a){(a.events||[]).forEach(function(e){if(VERB[e.type])EVS.push({e:e,a:a});});});
+    EVS.sort(function(x,y){return x.e.date<y.e.date?1:-1;});
+
+    var wk=weekly(list), bmax=Math.max.apply(null,wk.b.concat([1]));
+    var bars=wk.b.map(function(c,i){
+      return '<div class="bw"><div class="bv">'+(c||"")+'</div><div class="bc" style="height:'+Math.max(Math.round(96*c/bmax),3)+'%"></div><div class="bl">'+esc(wk.labs[i])+'</div></div>';
+    }).join("");
+
+    list.sort(function(a,b){return lastActivity(a)<lastActivity(b)?1:-1;});
+    var withoutLink=list.filter(function(a){return !a.jd_link;}).length;
+    var rows=list.map(function(a){
+      var st=deriveStatus(a), meta=STATUS[st], roles=(a.roles||[]).join(", ")||"—";
+      var roleCell = a.jd_link
+        ? '<a class="jd" href="'+esc(a.jd_link)+'" target="_blank" rel="noopener">'+esc(roles)+'</a>'
+        : (roles!=="—"?esc(roles)+' ':'')+'<button class="addlink" data-edit="'+esc(a.company)+'">＋ link</button>';
+      return '<tr><td><span class="co">'+esc(a.company)+'</span></td><td>'+roleCell+'</td>'+
+        '<td>'+esc(a.applied_at||"—")+'</td>'+
+        '<td><span class="pill" style="background:'+meta[1]+'">'+meta[0]+'</span></td>'+
+        '<td>'+esc(lastActivity(a)||"—")+'</td>'+
+        '<td style="text-align:right"><button class="pencil" data-edit="'+esc(a.company)+'" title="Edit">✎</button></td></tr>';
+    }).join("")||'<tr><td colspan="6" class="r">No applications tracked yet.</td></tr>';
+
+    var legend=Object.keys(STATUS).map(function(k){return '<span><i style="background:'+STATUS[k][1]+'"></i>'+STATUS[k][0]+'</span>';}).join("");
+    var hint=withoutLink?' &nbsp;·&nbsp; <span class="r">'+withoutLink+' without a link — click ＋ link or ✎ to add</span>':'';
+
+    document.getElementById("main").innerHTML=
+      '<div class="phead"><h1>'+esc(DATA.name)+'</h1>'+
+        '<span class="sub">'+esc(DATA.email)+(DATA.updated_at?' · updated '+fmtDate(DATA.updated_at):"")+'</span></div>'+
+      '<div class="metrics">'+cards+'</div>'+
+      '<div class="cols">'+
+        '<div class="panel"><div id="bdhead"></div><div class="scroll" id="bd"></div></div>'+
+        '<div class="panel"><h3>Recent activity</h3><div class="scroll"><ul class="feed" id="feed"></ul></div></div></div>'+
+      '<div class="panel"><h3>Applications per week</h3><div class="chart">'+bars+'</div></div>'+
+      '<div class="panel"><h3>All applications ('+list.length+')'+hint+'</h3><div class="tablewrap"><table>'+
+        '<thead><tr><th>Company</th><th>Role</th><th>Applied</th><th>Status</th><th>Last activity</th><th></th></tr></thead>'+
+        '<tbody>'+rows+'</tbody></table></div>'+
+        '<div class="legend">'+legend+'</div></div>';
+
+    paint();
+
+    document.querySelectorAll(".metric[data-f]").forEach(function(el){
+      el.addEventListener("click",function(){setCardFilter(el.getAttribute("data-f"));});
+    });
+    document.querySelectorAll("[data-edit]").forEach(function(b){
+      b.addEventListener("click",function(){openEdit(b.getAttribute("data-edit"));});
+    });
+  }
+
+  var dlg=document.getElementById("dlg");
+  function openEdit(company){
+    var apps=displayApps(), rec=apps[normKey(company)]||{roles:[]};
+    var ov=(DATA.manual_overrides||{})[company]||{};
+    document.getElementById("dlgCo").textContent=company;
+    document.getElementById("dlgRole").value=ov.role||(rec.roles&&rec.roles[0])||"";
+    document.getElementById("dlgLink").value=ov.jd_link||rec.jd_link||"";
+    document.getElementById("dlgStatus").value=ov.status||rec.status_override||"";
+    document.getElementById("dlgHide").checked=!!ov.hide;
+    dlg._company=company;
+    dlg.showModal();
+  }
+  document.getElementById("dlgCancel").addEventListener("click",function(){dlg.close();});
+  document.getElementById("dlgSave").addEventListener("click",function(){
+    var body={slug:SLUG,company:dlg._company,
+      role:document.getElementById("dlgRole").value.trim(),
+      jd_link:document.getElementById("dlgLink").value.trim(),
+      status:document.getElementById("dlgStatus").value,
+      hide:document.getElementById("dlgHide").checked};
+    DATA.manual_overrides=DATA.manual_overrides||{};
+    var entry={};
+    if(body.role)entry.role=body.role;
+    if(body.jd_link)entry.jd_link=body.jd_link;
+    if(body.status)entry.status=body.status;
+    if(body.hide)entry.hide=true;
+    if(Object.keys(entry).length)DATA.manual_overrides[dlg._company]=entry;
+    else delete DATA.manual_overrides[dlg._company];
+    dlg.close();renderDash();
+    toast("Saved for this session — the demo resets on reload.");
+  });
+
+  function removePerson(slug,name){
+    if(!confirm('Remove the demo tracker for '+name+'? (Resets on reload.)'))return;
+    delete DEMO[slug];
+    Object.keys(DEMO).forEach(function(k){
+      DEMO[k].people=(DEMO[k].people||[]).filter(function(p){return p.slug!==slug;});
+    });
+    if(slug===SLUG){go(Object.keys(DEMO)[0]);}
+    else{DATA.people=(DATA.people||[]).filter(function(p){return p.slug!==slug;});renderSidebar();}
+    toast("Removed "+name+" (demo — resets on reload).");
+  }
+
+  function renderSidebar(){
+    var nav=document.getElementById("nav");
+    var people=DATA.people||[{slug:SLUG,name:DATA.name}];
+    nav.innerHTML=people.map(function(p){
+      return '<a href="#'+esc(p.slug)+'" data-go="'+esc(p.slug)+'" class="'+(p.slug===SLUG?"on":"")+'">'+
+        esc(p.name)+
+        (p.slug===SLUG?"":'<button class="x" data-del="'+esc(p.slug)+'" data-name="'+esc(p.name)+'" title="Remove tracker">✕</button>')+
+        '</a>';
+    }).join("");
+    nav.querySelectorAll("[data-go]").forEach(function(a){
+      a.addEventListener("click",function(e){e.preventDefault();go(a.getAttribute("data-go"));});
+    });
+    nav.querySelectorAll(".x").forEach(function(btn){
+      btn.addEventListener("click",function(e){
+        e.preventDefault();e.stopPropagation();
+        removePerson(btn.getAttribute("data-del"),btn.getAttribute("data-name"));
+      });
+    });
+  }
+
+  document.getElementById("themeBtn").addEventListener("click",function(){
+    var r=document.documentElement,cur=r.getAttribute("data-theme");
+    var next=cur==="dark"?"light":(cur==="light"?"dark":(matchMedia("(prefers-color-scheme:dark)").matches?"light":"dark"));
+    r.setAttribute("data-theme",next);localStorage.setItem(THK,next);
+  });
+  (function(){var t=localStorage.getItem(THK);if(t)document.documentElement.setAttribute("data-theme",t);})();
+
+  function load(){
+    DATA=DEMO[SLUG]||DEMO[FIRST];
+    renderSidebar();renderDash();
+  }
+  function go(slug){
+    if(!DEMO[slug])return;
+    SLUG=slug;FILTER=null;
+    if(location.hash.slice(1)!==slug)location.hash=slug;
+    load();window.scrollTo(0,0);
+  }
+  window.addEventListener("hashchange",function(){
+    var s=location.hash.slice(1);if(DEMO[s]&&s!==SLUG)go(s);
+  });
+  document.getElementById("addBtn").addEventListener("click",function(){
+    toast("Enrolling a real inbox happens in the live app via Google sign-in — this is a static demo.");
+  });
+  load();
+})();
+</script>
+</body>
+</html>
