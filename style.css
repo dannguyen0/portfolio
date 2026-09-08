@@ -41,12 +41,8 @@ a { color: inherit; text-decoration: none; }
 .rv2 { transition-delay: 0.24s; }
 .rv3 { transition-delay: 0.36s; }
 
-/* ── Menu Toggle ────────────────────────────────────────── */
+/* ── Menu Toggle (inside rail) ──────────────────────────── */
 .menu-btn {
-  position: fixed;
-  top: 1.6rem;
-  left: calc(var(--rail) + 1.25rem);
-  z-index: 500;
   background: none;
   border: none;
   cursor: pointer;
@@ -54,10 +50,15 @@ a { color: inherit; text-decoration: none; }
   flex-direction: column;
   gap: 5px;
   padding: 4px;
+  flex-shrink: 0;
+  align-self: center;
+  margin-bottom: auto;
+  margin-top: 0.5rem;
+  z-index: 500;
 }
 .menu-btn span {
   display: block;
-  width: 24px;
+  width: 22px;
   height: 1.5px;
   background: var(--cream);
   transition: opacity 0.2s;
@@ -155,14 +156,14 @@ a { color: inherit; text-decoration: none; }
   top: 0;
   bottom: 0;
   width: var(--rail);
+  background: var(--dark);
   border-right: 1px solid var(--cream-ff);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 0;
-  z-index: 50;
-  pointer-events: none;
+  z-index: 200;
 }
 .rail-text {
   writing-mode: vertical-rl;
@@ -375,13 +376,6 @@ h1 {
   color: var(--cream);
   line-height: 1;
 }
-.works-count {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(2rem, 5vw, 5rem);
-  color: var(--cream-f);
-  line-height: 1;
-}
 
 .works-track-wrap {
   overflow-x: auto;
@@ -533,6 +527,17 @@ h1 {
 .exp-section .sec-word { color: rgba(17,25,21,0.4); }
 .exp-section .sec-hr { background: var(--dark); opacity: 0.18; }
 
+.exp-title-big {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(3rem, 7vw, 8rem);
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 3rem;
+}
+
 .exp-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -549,12 +554,15 @@ h1 {
 .exp-img {
   height: 140px;
   overflow: hidden;
+  background: var(--dark);
 }
 .exp-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  filter: grayscale(100%) brightness(0.75);
+  mix-blend-mode: luminosity;
 }
 .exp-info {
   padding: 1.25rem 1.25rem 1.5rem;
