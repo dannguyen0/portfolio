@@ -7,443 +7,164 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ── FLOATING NAV ──────────────────────────────────────── -->
-  <nav class="float-nav">
-    <div class="nav-pill">
+  <!-- ── FIXED HEADER ──────────────────────────────────────── -->
+  <header class="site-header" id="site-header">
+    <a href="#" class="h-logo">Dan Nguyen</a>
+    <nav class="h-nav">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
-      <a href="#interests">Interests</a>
       <a href="#projects">Projects</a>
-    </div>
-  </nav>
+    </nav>
+    <a href="resume.pdf" class="h-resume" target="_blank" rel="noopener">Resume ↗</a>
+  </header>
 
   <!-- ── HERO ──────────────────────────────────────────────── -->
   <section class="hero">
-    <div class="hero-bg" id="hero-bg-art" aria-hidden="true"></div>
-    <div class="hero-content">
+    <div class="hero-rail" aria-hidden="true">
+      <span>DAN NGUYEN — PORTFOLIO 2026</span>
+    </div>
+    <div class="hero-corner">
+      <p>Business Analyst</p>
+      <p>Orange County, CA</p>
+      <p class="hero-time" id="hero-time">--:-- PDT</p>
+    </div>
+    <div class="hero-name">
       <h1>Dan<br>Nguyen</h1>
-      <div class="hero-sub">
-        <span>Business Analyst</span>
-        <span class="dot">·</span>
-        <span>Orange County, CA</span>
+    </div>
+    <div class="hero-foot">
+      <div class="avail">
+        <span class="avail-dot"></span>
+        <span>Open for BA opportunities</span>
       </div>
+      <span class="scroll-cue">Scroll ↓</span>
     </div>
   </section>
 
-  <!-- ── ABOUT (inside main for content width) ─────────────── -->
-  <main>
-    <section class="about" id="about">
-      <div class="about-deco" aria-hidden="true">
-        <svg viewBox="0 0 900 400" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="820" cy="200" r="360" stroke="#18140F" stroke-width="0.8" opacity="0.07"/>
-          <circle cx="820" cy="200" r="280" stroke="#18140F" stroke-width="0.8" opacity="0.08"/>
-          <circle cx="820" cy="200" r="200" stroke="#18140F" stroke-width="0.8" opacity="0.09"/>
-          <circle cx="820" cy="200" r="120" stroke="#18140F" stroke-width="0.8" opacity="0.1"/>
-          <circle cx="820" cy="200" r="50"  stroke="#18140F" stroke-width="0.8" opacity="0.1"/>
-          <line x1="0" y1="200" x2="900" y2="200" stroke="#18140F" stroke-width="0.5" opacity="0.07"/>
-          <line x1="0" y1="120" x2="900" y2="120" stroke="#18140F" stroke-width="0.35" opacity="0.05" stroke-dasharray="10 5"/>
-          <line x1="0" y1="280" x2="900" y2="280" stroke="#18140F" stroke-width="0.35" opacity="0.05" stroke-dasharray="10 5"/>
-          <line x1="0" y1="60"  x2="900" y2="60"  stroke="#18140F" stroke-width="0.25" opacity="0.04" stroke-dasharray="6 8"/>
-          <line x1="0" y1="340" x2="900" y2="340" stroke="#18140F" stroke-width="0.25" opacity="0.04" stroke-dasharray="6 8"/>
-          <line x1="820" y1="0" x2="820" y2="400" stroke="#18140F" stroke-width="0.4" opacity="0.06"/>
-          <line x1="200" y1="195" x2="200" y2="205" stroke="#18140F" stroke-width="0.6" opacity="0.08"/>
-          <line x1="400" y1="195" x2="400" y2="205" stroke="#18140F" stroke-width="0.6" opacity="0.08"/>
-          <line x1="600" y1="195" x2="600" y2="205" stroke="#18140F" stroke-width="0.6" opacity="0.08"/>
-        </svg>
+  <!-- ── CHAPTER 01 — ABOUT ────────────────────────────────── -->
+  <section class="ch" id="about">
+    <div class="ch-in">
+      <div class="ch-lbl reveal">
+        <span class="ch-n">01</span>
+        <span class="ch-line"></span>
+        <span class="ch-word">About</span>
       </div>
-      <h2 class="section-title">About</h2>
-      <div class="about-body">
-        <p>I build strategy, optimize processes, and make sense of complex systems. Currently, I'm a Business Analyst at Hyundai focusing on corporate IT strategy. As a UC Irvine Business Econ alum, I've spent my career operating at the cross-section of marketing, operations, and program management to make businesses run smarter.</p>
-        <p>What you'll find here are the curiosity-driven passion projects—mostly data analysis and visualization—that I build just to see how the world works.</p>
-        <p>Off the clock, I channel that same high energy into fitness, basketball, cooking, and chasing winters on a snowboard.</p>
-      </div>
-    </section>
-  </main>
-
-  <!-- ── SKILLS (full-width) ───────────────────────────────── -->
-  <section class="skills" id="skills">
-    <div class="skills-bg-art" aria-hidden="true">
-      <svg viewBox="0 0 1100 520" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="skillgrid" x="0" y="0" width="44" height="44" patternUnits="userSpaceOnUse">
-            <circle cx="0" cy="0" r="1.2" fill="#1A8FA0" opacity="0.14"/>
-          </pattern>
-        </defs>
-        <rect width="1100" height="520" fill="url(#skillgrid)"/>
-        <!-- Teal PCB traces -->
-        <g stroke="#1A8FA0" opacity="0.16" stroke-linecap="round" stroke-width="1">
-          <line x1="550" y1="0"   x2="550" y2="520"/>
-          <line x1="0"   y1="260" x2="1100" y2="260"/>
-          <line x1="660" y1="100" x2="880" y2="100"/>
-          <line x1="880" y1="100" x2="880" y2="220"/>
-          <line x1="880" y1="220" x2="1000" y2="220"/>
-          <line x1="660" y1="380" x2="820" y2="380"/>
-          <line x1="820" y1="380" x2="820" y2="300"/>
-          <line x1="820" y1="300" x2="950" y2="300"/>
-          <line x1="660" y1="160" x2="750" y2="160"/>
-          <line x1="750" y1="160" x2="750" y2="100"/>
-          <line x1="660" y1="440" x2="760" y2="440"/>
-          <line x1="760" y1="440" x2="760" y2="380"/>
-        </g>
-        <!-- Orange accent traces -->
-        <g stroke="#C75B2A" opacity="0.13" stroke-linecap="round" stroke-width="1">
-          <line x1="120" y1="120" x2="320" y2="120"/>
-          <line x1="120" y1="120" x2="120" y2="240"/>
-          <line x1="120" y1="240" x2="220" y2="240"/>
-          <line x1="220" y1="240" x2="220" y2="340"/>
-          <line x1="220" y1="340" x2="380" y2="340"/>
-          <line x1="380" y1="200" x2="380" y2="340"/>
-          <line x1="320" y1="120" x2="380" y2="200"/>
-          <line x1="440" y1="420" x2="550" y2="420"/>
-          <line x1="440" y1="340" x2="440" y2="420"/>
-        </g>
-        <!-- Teal component boxes -->
-        <rect x="600" y="200" width="60" height="40" stroke="#1A8FA0" stroke-width="1" opacity="0.18" fill="none"/>
-        <rect x="700" y="280" width="44" height="30" stroke="#1A8FA0" stroke-width="0.8" opacity="0.14" fill="none"/>
-        <rect x="860" y="160" width="50" height="35" stroke="#1A8FA0" stroke-width="0.8" opacity="0.14" fill="none"/>
-        <!-- Orange dashed component boxes -->
-        <rect x="150" y="180" width="50" height="36" stroke="#C75B2A" stroke-width="0.8" stroke-dasharray="4 3" opacity="0.18" fill="none"/>
-        <rect x="280" y="280" width="40" height="30" stroke="#C75B2A" stroke-width="0.7" stroke-dasharray="3 3" opacity="0.14" fill="none"/>
-        <!-- Teal nodes -->
-        <g fill="#1A8FA0" opacity="0.2">
-          <circle cx="660" cy="100" r="3.5"/>
-          <circle cx="660" cy="220" r="3.5"/>
-          <circle cx="660" cy="380" r="3.5"/>
-          <circle cx="550" cy="260" r="3.5"/>
-          <circle cx="880" cy="100" r="3"/>
-          <circle cx="820" cy="300" r="3"/>
-        </g>
-        <!-- Orange nodes -->
-        <g fill="#C75B2A" opacity="0.18">
-          <circle cx="120" cy="120" r="3.5"/>
-          <circle cx="220" cy="240" r="3"/>
-          <circle cx="380" cy="200" r="3"/>
-          <circle cx="380" cy="340" r="3"/>
-          <circle cx="440" cy="340" r="3"/>
-        </g>
-        <!-- Registration marks -->
-        <g stroke="#1A8FA0" stroke-width="0.8" opacity="0.18">
-          <path d="M20 40 L20 20 L40 20"/>
-          <path d="M1080 40 L1080 20 L1060 20"/>
-          <path d="M20 480 L20 500 L40 500"/>
-          <path d="M1080 480 L1080 500 L1060 500"/>
-        </g>
-      </svg>
-    </div>
-    <div class="skills-inner">
-      <h2 class="section-title">Skills</h2>
-      <div class="skills-layout">
-
-        <div class="skill-group">
-          <h3 class="skill-group-title">
-            <svg class="skill-title-icon" viewBox="0 0 14 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="1" y="8.5" width="3" height="5" rx="0.5"/>
-              <rect x="5.5" y="5" width="3" height="8.5" rx="0.5"/>
-              <rect x="10" y="2" width="3" height="11.5" rx="0.5"/>
-            </svg>
-            Data &amp; BI
-          </h3>
-          <ul>
-            <li>Power BI · DAX · Tableau</li>
-            <li>SQL · MySQL · BigQuery</li>
-            <li>Python · Power Query · Excel</li>
-            <li>Data Analysis · KPI Reporting</li>
-          </ul>
-        </div>
-
-        <div class="skill-group">
-          <h3 class="skill-group-title">
-            <svg class="skill-title-icon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <line x1="1" y1="3.5" x2="13" y2="3.5"/>
-              <line x1="1" y1="7" x2="13" y2="7"/>
-              <line x1="1" y1="10.5" x2="13" y2="10.5"/>
-              <circle cx="4" cy="3.5" r="1.5" fill="currentColor" stroke="none"/>
-              <circle cx="9" cy="7" r="1.5" fill="currentColor" stroke="none"/>
-              <circle cx="6" cy="10.5" r="1.5" fill="currentColor" stroke="none"/>
-            </svg>
-            Workflow &amp; Systems
-          </h3>
-          <ul>
-            <li>Power Apps · Power Automate</li>
-            <li>SharePoint · ServiceNow · Asana</li>
-            <li>SAP · Oracle · Salesforce</li>
-            <li>HubSpot · Zendesk</li>
-          </ul>
-        </div>
-
-        <div class="skill-group">
-          <h3 class="skill-group-title">
-            <svg class="skill-title-icon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M7 1.5 C4.5 1.5 2.5 3.5 2.5 6 C2.5 7.6 3.4 8.9 4.8 9.6 L5 11 L9 11 L9.2 9.6 C10.6 8.9 11.5 7.6 11.5 6 C11.5 3.5 9.5 1.5 7 1.5 Z"/>
-              <line x1="5" y1="12" x2="9" y2="12"/>
-              <line x1="5.5" y1="13" x2="8.5" y2="13"/>
-            </svg>
-            Business &amp; Creative
-          </h3>
-          <ul>
-            <li>Program &amp; Project Management</li>
-            <li>Business Process Improvement</li>
-            <li>SEO · Google Analytics</li>
-            <li>Photoshop · Canva · Premiere</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ── EXPERIENCE (full-width) ───────────────────────────── -->
-  <section class="experience" id="experience">
-    <div class="exp-bg-art" aria-hidden="true">
-      <svg viewBox="0 0 1100 480" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="exp-dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-            <circle cx="0" cy="0" r="1.1" fill="#C75B2A" opacity="0.13"/>
-          </pattern>
-        </defs>
-        <!-- Orange dot grid -->
-        <rect width="1100" height="480" fill="url(#exp-dots)"/>
-        <!-- Teal concentric arcs — right edge -->
-        <circle cx="1100" cy="240" r="380" stroke="#1A8FA0" stroke-width="1"   fill="none" opacity="0.1"/>
-        <circle cx="1100" cy="240" r="280" stroke="#1A8FA0" stroke-width="0.8" fill="none" opacity="0.09"/>
-        <circle cx="1100" cy="240" r="180" stroke="#1A8FA0" stroke-width="0.7" fill="none" opacity="0.08"/>
-        <circle cx="1100" cy="240" r="90"  stroke="#1A8FA0" stroke-width="0.6" fill="none" opacity="0.07"/>
-        <!-- Orange arcs — bottom-left corner -->
-        <circle cx="0" cy="480" r="340" stroke="#C75B2A" stroke-width="1"   fill="none" opacity="0.1"/>
-        <circle cx="0" cy="480" r="220" stroke="#C75B2A" stroke-width="0.8" fill="none" opacity="0.09"/>
-        <circle cx="0" cy="480" r="110" stroke="#C75B2A" stroke-width="0.7" fill="none" opacity="0.07"/>
-        <!-- Diagonal accent lines -->
-        <line x1="0"    y1="0"   x2="480" y2="480" stroke="#18140F" stroke-width="0.5" opacity="0.05"/>
-        <line x1="160"  y1="0"   x2="640" y2="480" stroke="#18140F" stroke-width="0.4" opacity="0.04"/>
-        <line x1="1100" y1="0"   x2="620" y2="480" stroke="#18140F" stroke-width="0.5" opacity="0.05"/>
-        <line x1="940"  y1="0"   x2="460" y2="480" stroke="#18140F" stroke-width="0.4" opacity="0.04"/>
-        <!-- Horizontal center line -->
-        <line x1="0" y1="240" x2="1100" y2="240" stroke="#18140F" stroke-width="0.4" opacity="0.05"/>
-        <!-- Rotated frame rectangle -->
-        <rect x="180" y="80" width="560" height="320" stroke="#1A8FA0" stroke-width="0.7" fill="none" opacity="0.09" transform="rotate(2 460 240)"/>
-        <!-- Accent nodes — teal -->
-        <circle cx="550" cy="55"  r="4"   fill="#1A8FA0" opacity="0.2"/>
-        <circle cx="220" cy="190" r="3"   fill="#1A8FA0" opacity="0.18"/>
-        <circle cx="880" cy="390" r="4"   fill="#1A8FA0" opacity="0.2"/>
-        <line x1="550" y1="50"  x2="550" y2="62"  stroke="#1A8FA0" stroke-width="0.8" opacity="0.2"/>
-        <line x1="545" y1="56"  x2="557" y2="56"  stroke="#1A8FA0" stroke-width="0.8" opacity="0.2"/>
-        <!-- Accent nodes — orange -->
-        <circle cx="360" cy="400" r="3.5" fill="#C75B2A" opacity="0.18"/>
-        <circle cx="820" cy="110" r="3"   fill="#C75B2A" opacity="0.16"/>
-        <line x1="360" y1="395" x2="360" y2="407" stroke="#C75B2A" stroke-width="0.8" opacity="0.2"/>
-        <line x1="354" y1="401" x2="366" y2="401" stroke="#C75B2A" stroke-width="0.8" opacity="0.2"/>
-        <!-- Registration marks -->
-        <path d="M28 40 L28 20 L48 20"   stroke="#C75B2A" stroke-width="0.9" opacity="0.22"/>
-        <path d="M1072 40 L1072 20 L1052 20" stroke="#C75B2A" stroke-width="0.9" opacity="0.22"/>
-        <path d="M28 440 L28 460 L48 460"   stroke="#1A8FA0" stroke-width="0.9" opacity="0.22"/>
-        <path d="M1072 440 L1072 460 L1052 460" stroke="#1A8FA0" stroke-width="0.9" opacity="0.22"/>
-      </svg>
-    </div>
-    <div class="exp-inner">
-      <h2 class="section-title">Experience</h2>
-      <div class="exp-wrapper">
-        <div class="exp-track" id="exp-track">
-
-          <!-- Hyundai -->
-          <div class="exp-card">
-            <div class="exp-art">
-              <img src="hyundai.png" alt="Hyundai Motor Company">
-            </div>
-            <div class="exp-info">
-              <span class="exp-date">Jul 2024 – Present</span>
-              <h3 class="exp-company">Hyundai Motor Company</h3>
-              <p class="exp-role">Business Analyst</p>
-              <p class="exp-note">Corporate IT strategy · Power BI dashboards · $6M OPEX savings identified</p>
-            </div>
-          </div>
-
-          <!-- Panasonic -->
-          <div class="exp-card">
-            <div class="exp-art">
-              <img src="panasonic.png" alt="Panasonic">
-            </div>
-            <div class="exp-info">
-              <span class="exp-date">Jan 2023 – Jul 2024</span>
-              <h3 class="exp-company">Panasonic</h3>
-              <p class="exp-role">Program Operations Analyst</p>
-              <p class="exp-note">30+ programs · Boeing &amp; Airbus fleets · $250M revenue protected</p>
-            </div>
-          </div>
-
-          <!-- Planet DDS -->
-          <div class="exp-card">
-            <div class="exp-art">
-              <img src="planetdds.png" alt="Planet DDS">
-            </div>
-            <div class="exp-info">
-              <span class="exp-date">Aug 2019 – Nov 2022</span>
-              <h3 class="exp-company">Planet DDS</h3>
-              <p class="exp-role">Brand Marketing Associate</p>
-              <p class="exp-note">Brand audit · SEO · HubSpot · 2× organic traffic growth</p>
-            </div>
-          </div>
-
-          <!-- UCI -->
-          <div class="exp-card">
-            <div class="exp-art">
-              <img src="uci.png" alt="UC Irvine">
-            </div>
-            <div class="exp-info">
-              <span class="exp-date">Aug 2017 – Mar 2021</span>
-              <h3 class="exp-company">UC Irvine</h3>
-              <p class="exp-role">B.S. Business Economics</p>
-              <p class="exp-note">Donald Bren School of Social Sciences</p>
-            </div>
-          </div>
-
-        </div>
-        <div class="exp-controls">
-          <button class="exp-arrow" id="exp-prev" aria-label="Previous">←</button>
-          <button class="exp-arrow" id="exp-next" aria-label="Next">→</button>
+      <div class="about-grid">
+        <h2 class="ch-head reveal">Strategy.<br>Analysis.<br>Systems.</h2>
+        <div class="about-copy">
+          <p class="reveal rv1">I build strategy, optimize processes, and make sense of complex systems. Currently a Business Analyst at Hyundai focused on corporate IT strategy — UC Irvine Business Econ alum, career spent at the cross-section of marketing, operations, and program management.</p>
+          <p class="reveal rv2">The projects here are the curiosity-driven side: data analysis and visualization built to understand how the world works.</p>
+          <p class="reveal rv3 about-out">Beyond work — fitness, basketball, pickleball, cooking, fishing, and chasing winters on a snowboard.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── INTERESTS ───────────────────────────────────────────── -->
-  <section class="interests" id="interests">
+  <!-- ── STATEMENT BREAK ───────────────────────────────────── -->
+  <section class="statement">
+    <p class="statement-text reveal">Making complex<br><em>data</em> tell<br>the right story.</p>
+  </section>
 
-    <div class="interests-bg-art" aria-hidden="true">
-      <svg viewBox="0 0 1100 580" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="ib-orange" cx="80" cy="120" r="200" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#C07830" stop-opacity="0.12"/>
-            <stop offset="100%" stop-color="#C07830" stop-opacity="0"/>
-          </radialGradient>
-          <radialGradient id="ib-blue" cx="1020" cy="460" r="180" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#4878A8" stop-opacity="0.12"/>
-            <stop offset="100%" stop-color="#4878A8" stop-opacity="0"/>
-          </radialGradient>
-          <radialGradient id="ib-green" cx="550" cy="580" r="200" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#4A8A70" stop-opacity="0.10"/>
-            <stop offset="100%" stop-color="#4A8A70" stop-opacity="0"/>
-          </radialGradient>
-          <radialGradient id="ib-rose" cx="920" cy="80" r="160" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#B85268" stop-opacity="0.10"/>
-            <stop offset="100%" stop-color="#B85268" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <ellipse cx="80"   cy="120" rx="200" ry="160" fill="url(#ib-orange)"/>
-        <ellipse cx="1020" cy="460" rx="180" ry="150" fill="url(#ib-blue)"/>
-        <ellipse cx="550"  cy="580" rx="200" ry="140" fill="url(#ib-green)"/>
-        <ellipse cx="920"  cy="80"  rx="160" ry="130" fill="url(#ib-rose)"/>
-        <!-- Dashed circles -->
-        <circle cx="95"   cy="490" r="72" stroke="#C07830" stroke-width="1.1" stroke-dasharray="4 4"   opacity="0.28" fill="none"/>
-        <circle cx="1010" cy="110" r="55" stroke="#7268B0" stroke-width="1"   stroke-dasharray="3 3.5" opacity="0.25" fill="none"/>
-        <circle cx="560"  cy="58"  r="42" stroke="#4A8A70" stroke-width="0.9" stroke-dasharray="3 4"   opacity="0.22" fill="none"/>
-        <!-- Dashed rectangles -->
-        <rect x="20"  y="330" width="110" height="80" stroke="#C47A30" stroke-width="0.9" stroke-dasharray="4 3.5" opacity="0.22" fill="none" rx="2"/>
-        <rect x="960" y="280" width="120" height="90" stroke="#4878A8" stroke-width="0.9" stroke-dasharray="4 3.5" opacity="0.20" fill="none" rx="2"/>
-        <rect x="460" y="490" width="180" height="70" stroke="#4A8A70" stroke-width="0.8" stroke-dasharray="3.5 4" opacity="0.18" fill="none" rx="2"/>
-        <!-- Dot clusters -->
-        <g fill="#C07830"><circle cx="32" cy="200" r="3" opacity="0.22"/><circle cx="50" cy="185" r="2.2" opacity="0.18"/><circle cx="18" cy="218" r="3.5" opacity="0.20"/><circle cx="62" cy="196" r="2" opacity="0.15"/><circle cx="38" cy="228" r="2.5" opacity="0.17"/><circle cx="14" cy="195" r="1.8" opacity="0.13"/></g>
-        <g fill="#4878A8"><circle cx="1068" cy="350" r="3" opacity="0.20"/><circle cx="1050" cy="335" r="2.2" opacity="0.17"/><circle cx="1080" cy="368" r="3.5" opacity="0.18"/><circle cx="1040" cy="355" r="2" opacity="0.14"/><circle cx="1072" cy="385" r="2.5" opacity="0.16"/></g>
-        <g fill="#B85268"><circle cx="1030" cy="185" r="2.5" opacity="0.20"/><circle cx="1048" cy="170" r="2" opacity="0.16"/><circle cx="1015" cy="200" r="3" opacity="0.18"/><circle cx="1060" cy="192" r="1.8" opacity="0.13"/><circle cx="1035" cy="215" r="2.2" opacity="0.15"/></g>
-        <g fill="#4A8A70"><circle cx="420" cy="540" r="2.5" opacity="0.20"/><circle cx="438" cy="525" r="2" opacity="0.16"/><circle cx="406" cy="555" r="3" opacity="0.18"/><circle cx="450" cy="548" r="1.8" opacity="0.13"/><circle cx="424" cy="568" r="2.2" opacity="0.15"/></g>
-        <g fill="#7268B0"><circle cx="820" cy="530" r="2.5" opacity="0.18"/><circle cx="838" cy="515" r="2" opacity="0.15"/><circle cx="806" cy="545" r="3" opacity="0.16"/><circle cx="850" cy="538" r="1.8" opacity="0.12"/><circle cx="824" cy="558" r="2.2" opacity="0.14"/></g>
-      </svg>
-    </div>
-
-    <div class="interests-inner">
-      <h2 class="section-title">Outside Work</h2>
-      <div class="interests-grid">
-
-        <div class="interest-card interest-card--fitness">
-          <svg class="interest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="1.5" y="9" width="3" height="6" rx="1"/><rect x="5.5" y="10.5" width="2.5" height="3" rx="0.5"/>
-            <line x1="8" y1="12" x2="16" y2="12"/>
-            <rect x="16" y="10.5" width="2.5" height="3" rx="0.5"/><rect x="19.5" y="9" width="3" height="6" rx="1"/>
-          </svg>
-          <p class="interest-title">Fitness</p>
-          <p class="interest-desc">Lifting, conditioning, and staying consistent in the gym.</p>
+  <!-- ── CHAPTER 02 — SKILLS ───────────────────────────────── -->
+  <section class="ch ch--alt" id="skills">
+    <div class="ch-in">
+      <div class="ch-lbl reveal">
+        <span class="ch-n">02</span>
+        <span class="ch-line"></span>
+        <span class="ch-word">Skills</span>
+      </div>
+      <div class="sk-rows">
+        <div class="sk-row reveal">
+          <div class="sk-num">01</div>
+          <div class="sk-body">
+            <p class="sk-cat">Data &amp; BI</p>
+            <p class="sk-list">Power BI · DAX · Tableau · SQL · MySQL · BigQuery · Python · Power Query · Excel · KPI Reporting</p>
+          </div>
         </div>
-
-        <div class="interest-card interest-card--basketball">
-          <svg class="interest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="9"/>
-            <path d="M12 3 C10 6 9.5 9 9.5 12 C9.5 15 10 18 12 21"/><path d="M12 3 C14 6 14.5 9 14.5 12 C14.5 15 14 18 12 21"/>
-            <line x1="3" y1="12" x2="21" y2="12"/>
-          </svg>
-          <p class="interest-title">Basketball</p>
-          <p class="interest-desc">Practicing shots and building in-game confidence.</p>
+        <div class="sk-row reveal rv1">
+          <div class="sk-num">02</div>
+          <div class="sk-body">
+            <p class="sk-cat">Workflow &amp; Systems</p>
+            <p class="sk-list">Power Apps · Power Automate · SharePoint · ServiceNow · Asana · SAP · Oracle · Salesforce · HubSpot · Zendesk</p>
+          </div>
         </div>
-
-        <div class="interest-card interest-card--pickleball">
-          <svg class="interest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="2.5" width="11" height="13" rx="5.5"/>
-            <line x1="8.5" y1="15.5" x2="8.5" y2="21.5"/><line x1="5.5" y1="21.5" x2="11.5" y2="21.5"/>
-            <circle cx="20" cy="6" r="2.5"/>
-          </svg>
-          <p class="interest-title">Pickleball</p>
-          <p class="interest-desc">The fastest-growing sport for good reason.</p>
+        <div class="sk-row reveal rv2">
+          <div class="sk-num">03</div>
+          <div class="sk-body">
+            <p class="sk-cat">Business &amp; Creative</p>
+            <p class="sk-list">Program &amp; Project Management · Business Process Improvement · SEO · Google Analytics · Photoshop · Canva · Premiere</p>
+          </div>
         </div>
-
-        <div class="interest-card interest-card--cooking">
-          <svg class="interest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M6 13.5 L18 13.5 L18 21 L6 21 Z"/>
-            <path d="M6 13.5 C4 13.5 3 11.5 3 10 C3 8 5 7 7 8 C7.5 5.5 9.5 3.5 12 3.5 C14.5 3.5 16.5 5.5 17 8 C19 7 21 8 21 10 C21 11.5 20 13.5 18 13.5"/>
-          </svg>
-          <p class="interest-title">Cooking</p>
-          <p class="interest-desc">Experimenting with recipes and cooking from scratch.</p>
-        </div>
-
-        <div class="interest-card interest-card--investing">
-          <svg class="interest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="3 17 9 11 13 15 21 7"/><polyline points="17 7 21 7 21 11"/>
-          </svg>
-          <p class="interest-title">Investing</p>
-          <p class="interest-desc">Long-term thinking on markets, money, and compounding.</p>
-        </div>
-
-        <div class="interest-card interest-card--fishing">
-          <svg class="interest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 5 C5 5 7 3 9 5 L18 15"/>
-            <path d="M18 15 C20.5 17 19 21 16.5 19.5 C14 18 15.5 14.5 18 15 Z"/>
-            <path d="M7.5 18 C7.5 20 10.5 20 10.5 18"/>
-          </svg>
-          <p class="interest-title">Fishing</p>
-          <p class="interest-desc">Patience as a practice. Freshwater and deep sea.</p>
-        </div>
-
-        <div class="interest-card interest-card--hiking">
-          <svg class="interest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="2 21 9 9 14 15 19 5"/>
-            <line x1="19" y1="5" x2="22" y2="5"/><line x1="14" y1="15" x2="17" y2="21"/>
-          </svg>
-          <p class="interest-title">Hiking &amp; Running</p>
-          <p class="interest-desc">Trails, distance, and clearing the head outdoors.</p>
-        </div>
-
-        <div class="interest-card interest-card--snowboard">
-          <svg class="interest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="15" cy="5" r="2"/>
-            <path d="M15 7 L13 13 L10 16"/><path d="M13 13 L17 15"/>
-            <path d="M3 20 C7 18 17 22 21 20"/>
-          </svg>
-          <p class="interest-title">Snowboarding</p>
-          <p class="interest-desc">Chasing powder and fresh runs whenever winter allows.</p>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ── PROJECTS ──────────────────────────────────────────── -->
-  <section class="projects-section" id="projects">
-    <div class="proj-bg-art" id="proj-bg-art" aria-hidden="true"></div>
-    <div class="projects-inner">
-      <h2 class="section-title">Projects</h2>
+  <!-- ── CHAPTER 03 — EXPERIENCE ───────────────────────────── -->
+  <section class="ch" id="experience">
+    <div class="ch-in">
+      <div class="ch-lbl reveal">
+        <span class="ch-n">03</span>
+        <span class="ch-line"></span>
+        <span class="ch-word">Experience</span>
+      </div>
+      <div class="xp-rows">
+        <div class="xp-row reveal">
+          <div class="xp-co">
+            <h3>Hyundai Motor Company</h3>
+            <p>Business Analyst</p>
+          </div>
+          <div class="xp-detail">
+            <span class="xp-date">Jul 2024 – Present</span>
+            <p>Corporate IT strategy · Power BI dashboards · $6M OPEX savings identified</p>
+          </div>
+        </div>
+        <div class="xp-row reveal rv1">
+          <div class="xp-co">
+            <h3>Panasonic</h3>
+            <p>Program Operations Analyst</p>
+          </div>
+          <div class="xp-detail">
+            <span class="xp-date">Jan 2023 – Jul 2024</span>
+            <p>30+ programs · Boeing &amp; Airbus fleets · $250M revenue protected</p>
+          </div>
+        </div>
+        <div class="xp-row reveal rv2">
+          <div class="xp-co">
+            <h3>Planet DDS</h3>
+            <p>Brand Marketing Associate</p>
+          </div>
+          <div class="xp-detail">
+            <span class="xp-date">Aug 2019 – Nov 2022</span>
+            <p>Brand audit · SEO · HubSpot · 2× organic traffic growth</p>
+          </div>
+        </div>
+        <div class="xp-row reveal rv3">
+          <div class="xp-co">
+            <h3>UC Irvine</h3>
+            <p>B.S. Business Economics</p>
+          </div>
+          <div class="xp-detail">
+            <span class="xp-date">Aug 2017 – Mar 2021</span>
+            <p>Donald Bren School of Social Sciences</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CHAPTER 04 — PROJECTS ─────────────────────────────── -->
+  <section class="ch ch--dark" id="projects">
+    <div class="ch-in">
+      <div class="ch-lbl reveal">
+        <span class="ch-n">04</span>
+        <span class="ch-line"></span>
+        <span class="ch-word">Projects</span>
+      </div>
       <div class="projects-showcase">
         <article class="project-featured" id="project-featured"></article>
         <div class="project-side">
@@ -459,18 +180,25 @@
     </div>
   </section>
 
-  <footer>
-    <span class="footer-name">Dan Nguyen</span>
-    <div class="footer-links">
-      <!-- Drop your resume PDF into this folder named "resume.pdf" to activate this link -->
-      <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
-      <a href="https://www.linkedin.com/in/danmnguyen/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/dannguyen0" target="_blank" rel="noopener">GitHub</a>
+  <!-- ── FOOTER ────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="foot-in">
+      <p class="foot-name reveal">Dan<br>Nguyen</p>
+      <div class="foot-right">
+        <p class="foot-sub reveal">Business Analyst · Data Enthusiast · Orange County, CA</p>
+        <div class="foot-links reveal rv1">
+          <a href="resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+          <a href="https://www.linkedin.com/in/danmnguyen/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a href="https://github.com/dannguyen0" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+        <p class="foot-copy reveal rv2">© 2026</p>
+      </div>
     </div>
   </footer>
 
   <script src="projects.js"></script>
   <script>
+    /* ── Icons ──────────────────────────────────────────── */
     const ICONS = {
       movie: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <rect x="7" y="19" width="42" height="28" rx="2"/>
@@ -530,85 +258,7 @@
       </svg>`
     };
 
-    /* ── Chevron gradient background generator ──────────────
-       Concentric "V" bands radiating from a single apex point,
-       each band split into a left half and right half so the
-       two arms can carry independent color progressions. */
-    function hexToRgb(hex) {
-      hex = hex.replace('#', '');
-      return [parseInt(hex.substring(0, 2), 16), parseInt(hex.substring(2, 4), 16), parseInt(hex.substring(4, 6), 16)];
-    }
-    function lerpColor(c1, c2, t) {
-      const a = hexToRgb(c1), b = hexToRgb(c2);
-      const ch = i => Math.round(a[i] + (b[i] - a[i]) * t);
-      return `rgb(${ch(0)},${ch(1)},${ch(2)})`;
-    }
-    function multiLerp(stops, t) {
-      for (let i = 0; i < stops.length - 1; i++) {
-        const [p0, c0] = stops[i];
-        const [p1, c1] = stops[i + 1];
-        if (t <= p1 || i === stops.length - 2) {
-          const lt = Math.min(1, Math.max(0, (t - p0) / (p1 - p0)));
-          return lerpColor(c0, c1, lt);
-        }
-      }
-      return stops[stops.length - 1][1];
-    }
-    function buildChevronSVG(opts) {
-      const { width, height, apex, targetLeft, targetTip, targetRight, layers, leftStops, rightStops } = opts;
-      const lerpPt = (target, t) => [apex[0] + (target[0] - apex[0]) * t, apex[1] + (target[1] - apex[1]) * t];
-      const pt = p => `${p[0].toFixed(1)},${p[1].toFixed(1)}`;
-      let parts = [];
-      for (let i = 0; i < layers; i++) {
-        const t0 = i / layers, t1 = (i + 1) / layers;
-        const left0 = lerpPt(targetLeft, t0),  left1 = lerpPt(targetLeft, t1);
-        const tip0  = lerpPt(targetTip,  t0),  tip1  = lerpPt(targetTip,  t1);
-        const right0 = lerpPt(targetRight, t0), right1 = lerpPt(targetRight, t1);
-        const lc = multiLerp(leftStops, t0);
-        const rc = multiLerp(rightStops, t0);
-        parts.push(`<polygon points="${pt(left0)} ${pt(tip0)} ${pt(tip1)} ${pt(left1)}" fill="${lc}"/>`);
-        parts.push(`<polygon points="${pt(tip0)} ${pt(right0)} ${pt(right1)} ${pt(tip1)}" fill="${rc}"/>`);
-      }
-      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">${parts.join('')}</svg>`;
-    }
-
-    const CHEVRON_LEFT_STOPS = [
-      [0,    '#FAF6EE'],
-      [0.30, '#CFE8EC'],
-      [0.60, '#42B0C2'],
-      [0.85, '#1A6478'],
-      [1,    '#0E2230']
-    ];
-    const CHEVRON_RIGHT_STOPS = [
-      [0,    '#FBF1E2'],
-      [0.25, '#E2A468'],
-      [0.50, '#C75B2A'],
-      [0.70, '#6890CC'],
-      [1,    '#131F35']
-    ];
-
-    document.getElementById('hero-bg-art').innerHTML = buildChevronSVG({
-      width: 1200, height: 800,
-      apex: [420, 190],
-      targetLeft:  [-60, 160],
-      targetTip:   [640, 880],
-      targetRight: [1280, 0],
-      layers: 32,
-      leftStops: CHEVRON_LEFT_STOPS,
-      rightStops: CHEVRON_RIGHT_STOPS
-    });
-
-    document.getElementById('proj-bg-art').innerHTML = buildChevronSVG({
-      width: 1200, height: 700,
-      apex: [600, 60],
-      targetLeft:  [-100, 650],
-      targetTip:   [600, 900],
-      targetRight: [1300, 650],
-      layers: 30,
-      leftStops: CHEVRON_LEFT_STOPS,
-      rightStops: CHEVRON_RIGHT_STOPS
-    });
-
+    /* ── Project render ─────────────────────────────────── */
     const total = PROJECTS.length;
     const PER_PAGE = 3;
     const totalPages = Math.ceil(total / PER_PAGE);
@@ -617,12 +267,10 @@
     function tagHTML(tags) {
       return tags.map(t => `<span class="tag">${t}</span>`).join('');
     }
-
     function iconHTML(key, size) {
       const svg = ICONS[key] || ICONS.chart;
-      return `<div class="card-icon card-icon--${key}" style="--icon-size:${size}px">${svg}</div>`;
+      return `<div class="card-icon" style="--icon-size:${size}px">${svg}</div>`;
     }
-
     function renderProjects(animate) {
       const base = projPage * PER_PAGE;
       const p0 = PROJECTS[base % total];
@@ -630,16 +278,15 @@
       const p2 = PROJECTS[(base + 2) % total];
 
       document.getElementById('project-featured').innerHTML = `
-        ${iconHTML(p0.icon, 72)}
+        ${iconHTML(p0.icon, 64)}
         <div class="card-tags">${tagHTML(p0.tags)}</div>
         <h3 class="card-title featured-title">${p0.title}</h3>
         <p class="card-desc">${p0.description}</p>
         ${p0.link ? `<a class="card-link" href="${p0.link}" target="_blank" rel="noopener">View Project →</a>` : ''}
       `;
-
       [['project-side-1', p1], ['project-side-2', p2]].forEach(([id, p]) => {
         document.getElementById(id).innerHTML = `
-          ${iconHTML(p.icon, 44)}
+          ${iconHTML(p.icon, 40)}
           <div class="card-tags">${tagHTML(p.tags)}</div>
           <h3 class="card-title">${p.title}</h3>
           <p class="card-desc">${p.description}</p>
@@ -667,16 +314,36 @@
       projPage = (projPage + 1) % totalPages;
       renderProjects(true);
     });
-
     renderProjects(false);
 
-    const expTrack = document.getElementById('exp-track');
-    document.getElementById('exp-prev').addEventListener('click', () => {
-      expTrack.scrollBy({ left: -300, behavior: 'smooth' });
-    });
-    document.getElementById('exp-next').addEventListener('click', () => {
-      expTrack.scrollBy({ left: 300, behavior: 'smooth' });
-    });
+    /* ── Scroll reveal ──────────────────────────────────── */
+    const ro = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          ro.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+    /* ── Header on scroll ───────────────────────────────── */
+    const header = document.getElementById('site-header');
+    new IntersectionObserver(([e]) => {
+      header.classList.toggle('visible', !e.isIntersecting);
+    }, { threshold: 0.15 }).observe(document.querySelector('.hero'));
+
+    /* ── Live clock ─────────────────────────────────────── */
+    function tick() {
+      const t = new Date().toLocaleTimeString('en-US', {
+        timeZone: 'America/Los_Angeles',
+        hour: '2-digit', minute: '2-digit', hour12: false
+      });
+      const el = document.getElementById('hero-time');
+      if (el) el.textContent = t + ' PDT';
+    }
+    tick();
+    setInterval(tick, 1000);
   </script>
 
 </body>
