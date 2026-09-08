@@ -7,32 +7,47 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ── FIXED HEADER ──────────────────────────────────────── -->
-  <header class="site-header" id="site-header">
-    <a href="#" class="h-logo">Dan Nguyen</a>
-    <nav class="h-nav">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
+  <!-- ── RAIL ──────────────────────────────────────────────── -->
+  <div class="rail" aria-hidden="true">
+    <span class="rail-text">DAN NGUYEN — PORTFOLIO 2026</span>
+    <span class="rail-copy">© 2026</span>
+  </div>
+
+  <!-- ── HAMBURGER ─────────────────────────────────────────── -->
+  <button class="menu-btn" id="menu-btn" aria-label="Open menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- ── MENU OVERLAY ──────────────────────────────────────── -->
+  <div class="menu-overlay" id="menu-overlay">
+    <button class="menu-close" id="menu-close">Close</button>
+    <nav class="menu-nav">
+      <a href="#hero"       class="menu-item" data-close><span class="menu-n">01.</span><span class="menu-label">Home</span></a>
+      <a href="#about"      class="menu-item" data-close><span class="menu-n">02.</span><span class="menu-label">About</span></a>
+      <a href="#works"      class="menu-item" data-close><span class="menu-n">03.</span><span class="menu-label">Works</span></a>
+      <a href="#experience" class="menu-item" data-close><span class="menu-n">04.</span><span class="menu-label">Experience</span></a>
+      <a href="#contact"    class="menu-item" data-close><span class="menu-n">05.</span><span class="menu-label">Contact</span></a>
     </nav>
-    <a href="resume.pdf" class="h-resume" target="_blank" rel="noopener">Resume ↗</a>
-  </header>
+    <div class="menu-foot">
+      <a href="resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+      <a href="https://www.linkedin.com/in/danmnguyen/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://github.com/dannguyen0" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
 
   <!-- ── HERO ──────────────────────────────────────────────── -->
-  <section class="hero">
-    <div class="hero-rail" aria-hidden="true">
-      <span>DAN NGUYEN — PORTFOLIO 2026</span>
-    </div>
+  <section class="hero" id="hero">
     <div class="hero-corner">
-      <p>Business Analyst</p>
+      <p>Analyst · Builder · Problem-Solver</p>
       <p>Orange County, CA</p>
-      <p class="hero-time" id="hero-time">--:-- PDT</p>
+      <p id="hero-time">--:-- PDT</p>
     </div>
     <div class="hero-name">
       <h1>Dan<br>Nguyen</h1>
@@ -40,158 +55,113 @@
     <div class="hero-foot">
       <div class="avail">
         <span class="avail-dot"></span>
-        <span>Open for BA opportunities</span>
+        <span>Open to BA · DA · Operations · Strategy</span>
       </div>
       <span class="scroll-cue">Scroll ↓</span>
     </div>
   </section>
 
-  <!-- ── CHAPTER 01 — ABOUT ────────────────────────────────── -->
-  <section class="ch" id="about">
-    <div class="ch-in">
-      <div class="ch-lbl reveal">
-        <span class="ch-n">01</span>
-        <span class="ch-line"></span>
-        <span class="ch-word">About</span>
+  <!-- ── ABOUT ─────────────────────────────────────────────── -->
+  <section class="section about-section" id="about">
+    <div class="sec-in">
+      <div class="sec-lbl reveal">
+        <span class="sec-n">02</span>
+        <span class="sec-hr"></span>
+        <span class="sec-word">About</span>
       </div>
       <div class="about-grid">
-        <h2 class="ch-head reveal">Strategy.<br>Analysis.<br>Systems.</h2>
+        <h2 class="about-head reveal">Strategy.<br>Analysis.<br>Systems.</h2>
         <div class="about-copy">
           <p class="reveal rv1">I build strategy, optimize processes, and make sense of complex systems. Currently a Business Analyst at Hyundai focused on corporate IT strategy — UC Irvine Business Econ alum, career spent at the cross-section of marketing, operations, and program management.</p>
-          <p class="reveal rv2">The projects here are the curiosity-driven side: data analysis and visualization built to understand how the world works.</p>
-          <p class="reveal rv3 about-out">Beyond work — fitness, basketball, pickleball, cooking, fishing, and chasing winters on a snowboard.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── STATEMENT BREAK ───────────────────────────────────── -->
-  <section class="statement">
-    <p class="statement-text reveal">Making complex<br><em>data</em> tell<br>the right story.</p>
-  </section>
-
-  <!-- ── CHAPTER 02 — SKILLS ───────────────────────────────── -->
-  <section class="ch ch--alt" id="skills">
-    <div class="ch-in">
-      <div class="ch-lbl reveal">
-        <span class="ch-n">02</span>
-        <span class="ch-line"></span>
-        <span class="ch-word">Skills</span>
-      </div>
-      <div class="sk-rows">
-        <div class="sk-row reveal">
-          <div class="sk-num">01</div>
-          <div class="sk-body">
-            <p class="sk-cat">Data &amp; BI</p>
-            <p class="sk-list">Power BI · DAX · Tableau · SQL · MySQL · BigQuery · Python · Power Query · Excel · KPI Reporting</p>
-          </div>
-        </div>
-        <div class="sk-row reveal rv1">
-          <div class="sk-num">02</div>
-          <div class="sk-body">
-            <p class="sk-cat">Workflow &amp; Systems</p>
-            <p class="sk-list">Power Apps · Power Automate · SharePoint · ServiceNow · Asana · SAP · Oracle · Salesforce · HubSpot · Zendesk</p>
-          </div>
-        </div>
-        <div class="sk-row reveal rv2">
-          <div class="sk-num">03</div>
-          <div class="sk-body">
-            <p class="sk-cat">Business &amp; Creative</p>
-            <p class="sk-list">Program &amp; Project Management · Business Process Improvement · SEO · Google Analytics · Photoshop · Canva · Premiere</p>
+          <p class="reveal rv2">The projects here are the curiosity-driven side: data analysis and visualization built to understand how the world actually works.</p>
+          <p class="reveal rv3">Beyond work — fitness, basketball, pickleball, cooking, fishing, and chasing winters on a snowboard.</p>
+          <div class="about-roles reveal rv3">
+            <p>Open to any role where data drives decisions — Business Analyst, Data Analyst, Operations Analyst, Strategy, or anywhere that turns complexity into clarity.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── CHAPTER 03 — EXPERIENCE ───────────────────────────── -->
-  <section class="ch" id="experience">
-    <div class="ch-in">
-      <div class="ch-lbl reveal">
-        <span class="ch-n">03</span>
-        <span class="ch-line"></span>
-        <span class="ch-word">Experience</span>
+  <!-- ── WORKS ─────────────────────────────────────────────── -->
+  <section class="works-section" id="works">
+    <div class="works-hdr">
+      <div class="works-hdr-lbl">
+        <span class="sec-n" style="color:var(--cream-d)">03</span>
+        <span class="sec-hr"></span>
+        <span class="sec-word" style="color:var(--cream-d)">Works</span>
       </div>
-      <div class="xp-rows">
-        <div class="xp-row reveal">
-          <div class="xp-co">
-            <h3>Hyundai Motor Company</h3>
-            <p>Business Analyst</p>
-          </div>
-          <div class="xp-detail">
-            <span class="xp-date">Jul 2024 – Present</span>
-            <p>Corporate IT strategy · Power BI dashboards · $6M OPEX savings identified</p>
-          </div>
-        </div>
-        <div class="xp-row reveal rv1">
-          <div class="xp-co">
-            <h3>Panasonic</h3>
-            <p>Program Operations Analyst</p>
-          </div>
-          <div class="xp-detail">
-            <span class="xp-date">Jan 2023 – Jul 2024</span>
-            <p>30+ programs · Boeing &amp; Airbus fleets · $250M revenue protected</p>
-          </div>
-        </div>
-        <div class="xp-row reveal rv2">
-          <div class="xp-co">
-            <h3>Planet DDS</h3>
-            <p>Brand Marketing Associate</p>
-          </div>
-          <div class="xp-detail">
-            <span class="xp-date">Aug 2019 – Nov 2022</span>
-            <p>Brand audit · SEO · HubSpot · 2× organic traffic growth</p>
+      <div style="display:flex;align-items:baseline;gap:1.5rem">
+        <h2 class="works-title-big reveal">ALL WORK</h2>
+        <span class="works-count reveal rv1" id="works-count"></span>
+      </div>
+    </div>
+    <div class="works-track-wrap" id="works-track-wrap">
+      <div class="works-track" id="works-track"></div>
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ────────────────────────────────────────── -->
+  <section class="section exp-section" id="experience">
+    <div class="sec-in">
+      <div class="sec-lbl reveal">
+        <span class="sec-n">04</span>
+        <span class="sec-hr"></span>
+        <span class="sec-word">Experience</span>
+      </div>
+      <div class="exp-cards">
+        <div class="exp-card reveal">
+          <div class="exp-img"><img src="hyundai.png" alt="Hyundai Motor Company"></div>
+          <div class="exp-info">
+            <span class="exp-date">Jul 2024 – Present</span>
+            <p class="exp-co">Hyundai Motor Company</p>
+            <p class="exp-role">Business Analyst</p>
+            <p class="exp-note">Corporate IT strategy · Power BI · $6M OPEX savings identified</p>
           </div>
         </div>
-        <div class="xp-row reveal rv3">
-          <div class="xp-co">
-            <h3>UC Irvine</h3>
-            <p>B.S. Business Economics</p>
+        <div class="exp-card reveal rv1">
+          <div class="exp-img"><img src="panasonic.png" alt="Panasonic"></div>
+          <div class="exp-info">
+            <span class="exp-date">Jan 2023 – Jul 2024</span>
+            <p class="exp-co">Panasonic</p>
+            <p class="exp-role">Program Operations Analyst</p>
+            <p class="exp-note">30+ programs · Boeing &amp; Airbus fleets · $250M revenue protected</p>
           </div>
-          <div class="xp-detail">
-            <span class="xp-date">Aug 2017 – Mar 2021</span>
-            <p>Donald Bren School of Social Sciences</p>
+        </div>
+        <div class="exp-card reveal rv2">
+          <div class="exp-img"><img src="planetdds.png" alt="Planet DDS"></div>
+          <div class="exp-info">
+            <span class="exp-date">Aug 2019 – Nov 2022</span>
+            <p class="exp-co">Planet DDS</p>
+            <p class="exp-role">Brand Marketing Associate</p>
+            <p class="exp-note">Brand audit · SEO · HubSpot · 2× organic traffic growth</p>
+          </div>
+        </div>
+        <div class="exp-card reveal rv3">
+          <div class="exp-img"><img src="uci.png" alt="UC Irvine"></div>
+          <div class="exp-info">
+            <span class="exp-date">Aug 2017 – Mar 2021</span>
+            <p class="exp-co">UC Irvine</p>
+            <p class="exp-role">B.S. Business Economics</p>
+            <p class="exp-note">Donald Bren School of Social Sciences</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── CHAPTER 04 — PROJECTS ─────────────────────────────── -->
-  <section class="ch ch--dark" id="projects">
-    <div class="ch-in">
-      <div class="ch-lbl reveal">
-        <span class="ch-n">04</span>
-        <span class="ch-line"></span>
-        <span class="ch-word">Projects</span>
-      </div>
-      <div class="projects-showcase">
-        <article class="project-featured" id="project-featured"></article>
-        <div class="project-side">
-          <article class="project-small" id="project-side-1"></article>
-          <article class="project-small" id="project-side-2"></article>
-        </div>
-      </div>
-      <div class="project-nav">
-        <button class="proj-arrow" id="proj-prev">←</button>
-        <span class="proj-counter" id="proj-counter"></span>
-        <button class="proj-arrow" id="proj-next">→</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FOOTER ────────────────────────────────────────────── -->
-  <footer class="site-footer">
+  <!-- ── FOOTER / CONTACT ──────────────────────────────────── -->
+  <footer class="site-footer" id="contact">
     <div class="foot-in">
       <p class="foot-name reveal">Dan<br>Nguyen</p>
       <div class="foot-right">
-        <p class="foot-sub reveal">Business Analyst · Data Enthusiast · Orange County, CA</p>
+        <p class="foot-sub reveal">Business Analyst · Data Analyst · Operations<br>Orange County, CA · Open to relocate</p>
         <div class="foot-links reveal rv1">
           <a href="resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
           <a href="https://www.linkedin.com/in/danmnguyen/" target="_blank" rel="noopener">LinkedIn ↗</a>
           <a href="https://github.com/dannguyen0" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
-        <p class="foot-copy reveal rv2">© 2026</p>
+        <p class="foot-copy reveal rv2">© 2026 Dan Nguyen</p>
       </div>
     </div>
   </footer>
@@ -200,138 +170,86 @@
   <script>
     /* ── Icons ──────────────────────────────────────────── */
     const ICONS = {
-      movie: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="7" y="19" width="42" height="28" rx="2"/>
-        <rect x="7" y="12" width="42" height="10" rx="1"/>
-        <line x1="18" y1="12" x2="14" y2="22"/><line x1="30" y1="12" x2="26" y2="22"/><line x1="42" y1="12" x2="38" y2="22"/>
-        <circle cx="28" cy="33" r="6"/><circle cx="28" cy="33" r="2"/>
-      </svg>`,
-      chart: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-        <line x1="9" y1="47" x2="47" y2="47"/><line x1="9" y1="9" x2="9" y2="47"/>
-        <rect x="14" y="28" width="9" height="19"/><rect x="27" y="17" width="9" height="30"/><rect x="40" y="22" width="9" height="25"/>
-      </svg>`,
-      food: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-        <line x1="20" y1="9" x2="20" y2="47"/><line x1="15" y1="9" x2="15" y2="23"/><line x1="25" y1="9" x2="25" y2="23"/>
-        <path d="M15 23 Q20 27 25 23"/>
-        <polygon points="38,10 40.5,18 49,18 42.5,23 45,31 38,26 31,31 33.5,23 27,18 35.5,18"/>
-      </svg>`,
-      store: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-        <path d="M10 26 L14 46 L42 46 L46 26 Z"/>
-        <path d="M19 26 C19 17 37 17 37 26"/>
-        <line x1="10" y1="26" x2="46" y2="26"/>
-        <line x1="22" y1="33" x2="22" y2="42"/><line x1="28" y1="33" x2="28" y2="42"/><line x1="34" y1="33" x2="34" y2="42"/>
-      </svg>`,
-      music: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-        <polyline points="4,28 10,16 16,40 22,12 28,44 34,18 40,32 46,22 52,28"/>
-      </svg>`,
-      scatter: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-        <line x1="9" y1="47" x2="47" y2="47"/><line x1="9" y1="9" x2="9" y2="47"/>
-        <circle cx="18" cy="40" r="2.5"/><circle cx="24" cy="30" r="2.5"/><circle cx="21" cy="44" r="2.5"/>
-        <circle cx="33" cy="22" r="2.5"/><circle cx="40" cy="17" r="2.5"/><circle cx="30" cy="33" r="2.5"/>
-        <line x1="13" y1="46" x2="44" y2="15" stroke-dasharray="3 2" opacity="0.5"/>
-      </svg>`,
-      globe: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-        <circle cx="28" cy="28" r="19"/>
-        <ellipse cx="28" cy="28" rx="9" ry="19"/>
-        <line x1="9" y1="28" x2="47" y2="28"/>
-        <path d="M12 18 Q28 13 44 18"/><path d="M12 38 Q28 43 44 38"/>
-      </svg>`,
-      plane: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M28 8 Q32 10 32 16 L32 50 Q30 53 28 53 Q26 53 24 50 L24 16 Q24 10 28 8 Z"/>
-        <path d="M26 30 L6 40 L9 45 L28 36 L47 45 L50 40 Z"/>
-        <path d="M26 46 L18 52 L28 49 L38 52 L30 46"/>
-      </svg>`,
-      bot: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="12" y="20" width="32" height="24" rx="4"/>
-        <circle cx="21" cy="32" r="3"/><circle cx="35" cy="32" r="3"/>
-        <line x1="25" y1="38" x2="31" y2="38"/>
-        <line x1="28" y1="10" x2="28" y2="20"/>
-        <circle cx="28" cy="9" r="3"/>
-        <line x1="12" y1="28" x2="6" y2="28"/><line x1="44" y1="28" x2="50" y2="28"/>
-        <line x1="9" y1="36" x2="9" y2="32" stroke-width="1"/><line x1="47" y1="36" x2="47" y2="32" stroke-width="1"/>
-      </svg>`,
-      hook: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="28" cy="10" r="3.5"/>
-        <line x1="28" y1="13.5" x2="28" y2="34"/>
-        <path d="M28 34 Q28 48 40 48 Q50 48 50 38 Q50 30 42 30"/>
-        <path d="M42 30 L46 26"/>
-      </svg>`
+      movie: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="19" width="42" height="28" rx="2"/><rect x="7" y="12" width="42" height="10" rx="1"/><line x1="18" y1="12" x2="14" y2="22"/><line x1="30" y1="12" x2="26" y2="22"/><line x1="42" y1="12" x2="38" y2="22"/><circle cx="28" cy="33" r="6"/><circle cx="28" cy="33" r="2"/></svg>`,
+      chart: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="9" y1="47" x2="47" y2="47"/><line x1="9" y1="9" x2="9" y2="47"/><rect x="14" y="28" width="9" height="19"/><rect x="27" y="17" width="9" height="30"/><rect x="40" y="22" width="9" height="25"/></svg>`,
+      food: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="20" y1="9" x2="20" y2="47"/><line x1="15" y1="9" x2="15" y2="23"/><line x1="25" y1="9" x2="25" y2="23"/><path d="M15 23 Q20 27 25 23"/><polygon points="38,10 40.5,18 49,18 42.5,23 45,31 38,26 31,31 33.5,23 27,18 35.5,18"/></svg>`,
+      store: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 26 L14 46 L42 46 L46 26 Z"/><path d="M19 26 C19 17 37 17 37 26"/><line x1="10" y1="26" x2="46" y2="26"/><line x1="22" y1="33" x2="22" y2="42"/><line x1="28" y1="33" x2="28" y2="42"/><line x1="34" y1="33" x2="34" y2="42"/></svg>`,
+      music: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="4,28 10,16 16,40 22,12 28,44 34,18 40,32 46,22 52,28"/></svg>`,
+      scatter: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="9" y1="47" x2="47" y2="47"/><line x1="9" y1="9" x2="9" y2="47"/><circle cx="18" cy="40" r="2.5"/><circle cx="24" cy="30" r="2.5"/><circle cx="21" cy="44" r="2.5"/><circle cx="33" cy="22" r="2.5"/><circle cx="40" cy="17" r="2.5"/><circle cx="30" cy="33" r="2.5"/><line x1="13" y1="46" x2="44" y2="15" stroke-dasharray="3 2" opacity="0.5"/></svg>`,
+      globe: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="28" cy="28" r="19"/><ellipse cx="28" cy="28" rx="9" ry="19"/><line x1="9" y1="28" x2="47" y2="28"/><path d="M12 18 Q28 13 44 18"/><path d="M12 38 Q28 43 44 38"/></svg>`,
+      plane: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M28 8 Q32 10 32 16 L32 50 Q30 53 28 53 Q26 53 24 50 L24 16 Q24 10 28 8 Z"/><path d="M26 30 L6 40 L9 45 L28 36 L47 45 L50 40 Z"/><path d="M26 46 L18 52 L28 49 L38 52 L30 46"/></svg>`,
+      bot: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="20" width="32" height="24" rx="4"/><circle cx="21" cy="32" r="3"/><circle cx="35" cy="32" r="3"/><line x1="25" y1="38" x2="31" y2="38"/><line x1="28" y1="10" x2="28" y2="20"/><circle cx="28" cy="9" r="3"/><line x1="12" y1="28" x2="6" y2="28"/><line x1="44" y1="28" x2="50" y2="28"/><line x1="9" y1="36" x2="9" y2="32" stroke-width="1"/><line x1="47" y1="36" x2="47" y2="32" stroke-width="1"/></svg>`,
+      hook: `<svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="28" cy="10" r="3.5"/><line x1="28" y1="13.5" x2="28" y2="34"/><path d="M28 34 Q28 48 40 48 Q50 48 50 38 Q50 30 42 30"/><path d="M42 30 L46 26"/></svg>`
     };
 
-    /* ── Project render ─────────────────────────────────── */
-    const total = PROJECTS.length;
-    const PER_PAGE = 3;
-    const totalPages = Math.ceil(total / PER_PAGE);
-    let projPage = 0;
-
-    function tagHTML(tags) {
-      return tags.map(t => `<span class="tag">${t}</span>`).join('');
+    /* ── Render Works ───────────────────────────────────── */
+    function renderWorks() {
+      const track = document.getElementById('works-track');
+      const count = document.getElementById('works-count');
+      if (count) count.textContent = `(${PROJECTS.length})`;
+      track.innerHTML = PROJECTS.map((p, i) => {
+        const num = String(i + 1).padStart(2, '0');
+        const cat = p.tags[0] || 'Analysis';
+        const icon = ICONS[p.icon] || ICONS.chart;
+        return `
+          <div class="work-card">
+            <div class="work-bg-num">${num}</div>
+            <div class="work-icon-lg">${icon}</div>
+            <div class="work-grad"></div>
+            <div class="work-info">
+              <p class="work-cat">${num}. ${cat} — 2026</p>
+              <h3 class="work-ttl">${p.title}</h3>
+            </div>
+            <div class="work-hover">
+              <p class="work-hover-cat">${cat}</p>
+              <p class="work-hover-title">${p.title}</p>
+              <p class="work-hover-desc">${p.description}</p>
+              ${p.link ? `<a class="work-hover-link" href="${p.link}" target="_blank" rel="noopener">View Project ↗</a>` : ''}
+            </div>
+          </div>`;
+      }).join('');
     }
-    function iconHTML(key, size) {
-      const svg = ICONS[key] || ICONS.chart;
-      return `<div class="card-icon" style="--icon-size:${size}px">${svg}</div>`;
-    }
-    function renderProjects(animate) {
-      const base = projPage * PER_PAGE;
-      const p0 = PROJECTS[base % total];
-      const p1 = PROJECTS[(base + 1) % total];
-      const p2 = PROJECTS[(base + 2) % total];
+    renderWorks();
 
-      document.getElementById('project-featured').innerHTML = `
-        ${iconHTML(p0.icon, 64)}
-        <div class="card-tags">${tagHTML(p0.tags)}</div>
-        <h3 class="card-title featured-title">${p0.title}</h3>
-        <p class="card-desc">${p0.description}</p>
-        ${p0.link ? `<a class="card-link" href="${p0.link}" target="_blank" rel="noopener">View Project →</a>` : ''}
-      `;
-      [['project-side-1', p1], ['project-side-2', p2]].forEach(([id, p]) => {
-        document.getElementById(id).innerHTML = `
-          ${iconHTML(p.icon, 40)}
-          <div class="card-tags">${tagHTML(p.tags)}</div>
-          <h3 class="card-title">${p.title}</h3>
-          <p class="card-desc">${p.description}</p>
-          ${p.link ? `<a class="card-link" href="${p.link}" target="_blank" rel="noopener">View Project →</a>` : ''}
-        `;
-      });
-
-      document.getElementById('proj-counter').textContent = `${projPage + 1} / ${totalPages}`;
-
-      if (animate) {
-        ['project-featured', 'project-side-1', 'project-side-2'].forEach(id => {
-          const el = document.getElementById(id);
-          el.classList.remove('proj-anim');
-          void el.offsetWidth;
-          el.classList.add('proj-anim');
-        });
-      }
-    }
-
-    document.getElementById('proj-prev').addEventListener('click', () => {
-      projPage = (projPage - 1 + totalPages) % totalPages;
-      renderProjects(true);
+    /* ── Drag-to-scroll works track ─────────────────────── */
+    const trackWrap = document.getElementById('works-track-wrap');
+    let isDragging = false, startX = 0, scrollLeft = 0;
+    trackWrap.addEventListener('mousedown', e => {
+      isDragging = true;
+      startX = e.pageX - trackWrap.offsetLeft;
+      scrollLeft = trackWrap.scrollLeft;
     });
-    document.getElementById('proj-next').addEventListener('click', () => {
-      projPage = (projPage + 1) % totalPages;
-      renderProjects(true);
+    trackWrap.addEventListener('mouseleave', () => isDragging = false);
+    trackWrap.addEventListener('mouseup',    () => isDragging = false);
+    trackWrap.addEventListener('mousemove',  e => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - trackWrap.offsetLeft;
+      trackWrap.scrollLeft = scrollLeft - (x - startX) * 1.2;
     });
-    renderProjects(false);
+
+    /* ── Menu ───────────────────────────────────────────── */
+    const overlay = document.getElementById('menu-overlay');
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    function closeMenu() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('menu-close').addEventListener('click', closeMenu);
+    document.querySelectorAll('[data-close]').forEach(el =>
+      el.addEventListener('click', closeMenu)
+    );
 
     /* ── Scroll reveal ──────────────────────────────────── */
     const ro = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in-view');
-          ro.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('in-view'); ro.unobserve(e.target); }
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
-
-    /* ── Header on scroll ───────────────────────────────── */
-    const header = document.getElementById('site-header');
-    new IntersectionObserver(([e]) => {
-      header.classList.toggle('visible', !e.isIntersecting);
-    }, { threshold: 0.15 }).observe(document.querySelector('.hero'));
 
     /* ── Live clock ─────────────────────────────────────── */
     function tick() {
