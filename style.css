@@ -7,7 +7,7 @@
   --cream-f: rgba(237,233,208,0.18);
   --cream-ff:rgba(237,233,208,0.07);
 
-  --serif: 'Bodoni Moda', Georgia, serif;
+  --serif: 'Inria Serif', Georgia, serif;
   --sans:  'DM Sans', system-ui, sans-serif;
 
   --pad: clamp(1.5rem, 4vw, 3.5rem);
@@ -29,17 +29,42 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 
+/* ── Scroll progress bar ────────────────────────────────── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: var(--rail);
+  right: 0;
+  height: 2px;
+  background: var(--cream);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 999;
+  transition: transform 0.08s linear;
+  opacity: 0.6;
+}
+
 /* ── Reveal ─────────────────────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
-              transform 0.75s cubic-bezier(0.16,1,0.3,1);
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+              transform 0.9s cubic-bezier(0.16,1,0.3,1);
 }
 .reveal.in-view { opacity: 1; transform: none; }
-.rv1 { transition-delay: 0.12s; }
-.rv2 { transition-delay: 0.24s; }
-.rv3 { transition-delay: 0.36s; }
+.rv1 { transition-delay: 0.1s; }
+.rv2 { transition-delay: 0.2s; }
+.rv3 { transition-delay: 0.3s; }
+
+/* ── Work card entrance ─────────────────────────────────── */
+.work-card {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+              transform 0.7s cubic-bezier(0.16,1,0.3,1),
+              border-color 0.3s;
+}
+.work-card.card-visible { opacity: 1; transform: none; }
 
 /* ── Menu Toggle (inside rail) ──────────────────────────── */
 .menu-btn {
@@ -302,7 +327,7 @@ h1 {
   color: var(--cream-d);
 }
 
-/* ── ABOUT (cream bg) ───────────────────────────────────── */
+/* ── ABOUT (cream bg, clean) ────────────────────────────── */
 .about-section {
   background: var(--cream);
   color: var(--dark);
@@ -403,9 +428,8 @@ h1 {
   overflow: hidden;
   cursor: pointer;
   background: var(--dark2);
-  transition: border-color 0.3s;
 }
-.work-card:hover { border-color: rgba(237,233,208,0.25); }
+.work-card.card-visible:hover { border-color: rgba(237,233,208,0.25); }
 
 .work-bg-num {
   position: absolute;
@@ -518,9 +542,13 @@ h1 {
 }
 .work-hover-link:hover { border-color: var(--cream); }
 
-/* ── EXPERIENCE (cream bg) ───────────────────────────────── */
+/* ── EXPERIENCE (grid-paper cream, distinct from About) ─── */
 .exp-section {
-  background: var(--cream);
+  background-color: var(--cream);
+  background-image:
+    linear-gradient(rgba(17,25,21,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17,25,21,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
   color: var(--dark);
 }
 .exp-section .sec-n,
