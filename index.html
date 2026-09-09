@@ -44,6 +44,7 @@
 
   <!-- HERO -->
   <section class="hero" id="hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
     <!-- decorative rings top-right -->
     <svg class="hero-rings" viewBox="0 0 700 700" fill="none" aria-hidden="true">
       <circle cx="700" cy="0" r="200" stroke="rgba(237,233,208,0.06)" stroke-width="1"/>
@@ -437,6 +438,67 @@
       });
       ticking = true;
     });
+
+    /* ── Hero dot-grid with mouse repulsion ─────────────── */
+    (function() {
+      const canvas = document.getElementById('hero-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const SPACING = 34, RADIUS = 90, STRENGTH = 0.38, DAMP = 0.78, RETURN = 0.08;
+      const DOT_R = 1.5, DOT_ALPHA = 0.12;
+      let dots = [], mouse = { x: -9999, y: -9999 }, raf;
+
+      function buildGrid() {
+        dots = [];
+        const w = canvas.width, h = canvas.height;
+        for (let x = SPACING / 2; x < w; x += SPACING) {
+          for (let y = SPACING / 2; y < h; y += SPACING) {
+            dots.push({ ox: x, oy: y, x, y, vx: 0, vy: 0 });
+          }
+        }
+      }
+
+      function resize() {
+        const hero = canvas.parentElement;
+        canvas.width = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
+        buildGrid();
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'rgba(237,233,208,' + DOT_ALPHA + ')';
+        let moved = false;
+        for (const d of dots) {
+          const dx = d.x - mouse.x, dy = d.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < RADIUS && dist > 0) {
+            const force = (1 - dist / RADIUS) * STRENGTH;
+            d.vx += (dx / dist) * force * 18;
+            d.vy += (dy / dist) * force * 18;
+          }
+          d.vx += (d.ox - d.x) * RETURN;
+          d.vy += (d.oy - d.y) * RETURN;
+          d.vx *= DAMP; d.vy *= DAMP;
+          d.x += d.vx; d.y += d.vy;
+          if (Math.abs(d.x - d.ox) > 0.05 || Math.abs(d.y - d.oy) > 0.05) moved = true;
+          ctx.beginPath();
+          ctx.arc(d.x, d.y, DOT_R, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        raf = requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', resize);
+      canvas.parentElement.addEventListener('mousemove', e => {
+        const r = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - r.left;
+        mouse.y = e.clientY - r.top;
+      });
+      canvas.parentElement.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+      resize();
+      draw();
+    })();
 
     /* ── Live clock ─────────────────────────────────────── */
     function tick() {
