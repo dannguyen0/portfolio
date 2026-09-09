@@ -44,6 +44,16 @@
 
   <!-- HERO -->
   <section class="hero" id="hero">
+    <!-- decorative rings top-right -->
+    <svg class="hero-rings" viewBox="0 0 700 700" fill="none" aria-hidden="true">
+      <circle cx="700" cy="0" r="200" stroke="rgba(237,233,208,0.06)" stroke-width="1"/>
+      <circle cx="700" cy="0" r="300" stroke="rgba(237,233,208,0.05)" stroke-width="1"/>
+      <circle cx="700" cy="0" r="400" stroke="rgba(237,233,208,0.04)" stroke-width="1"/>
+      <circle cx="700" cy="0" r="520" stroke="rgba(237,233,208,0.03)" stroke-width="1"/>
+      <!-- cross-hair accent -->
+      <line x1="580" y1="120" x2="620" y2="120" stroke="rgba(237,233,208,0.1)" stroke-width="0.75"/>
+      <line x1="600" y1="100" x2="600" y2="140" stroke="rgba(237,233,208,0.1)" stroke-width="0.75"/>
+    </svg>
     <div class="hero-corner">
       <p>Analyst &middot; Builder &middot; Problem-Solver</p>
       <p>Orange County, CA</p>
@@ -166,37 +176,190 @@
 
   <script src="projects.js"></script>
   <script>
-    /* ── Scene illustrations — abstract editorial compositions ── */
+    /* ── Illustrated compositions — layered editorial art ──── */
     const ICONS = {
-      /* Hooked: ocean wave layers + hanging line */
-      hook: '<svg viewBox="0 0 100 80" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M0 16 Q12 6 25 16 Q37 26 50 16 Q62 6 75 16 Q87 26 100 16"/><path d="M0 32 Q12 22 25 32 Q37 42 50 32 Q62 22 75 32 Q87 42 100 32"/><path d="M0 48 Q12 38 25 48 Q37 58 50 48 Q62 38 75 48 Q87 58 100 48"/><path d="M0 64 Q12 54 25 64 Q37 74 50 64 Q62 54 75 64 Q87 74 100 64"/><line x1="50" y1="0" x2="50" y2="14"/><circle cx="50" cy="16" r="3.5"/></svg>',
 
-      /* Trading Bot: ascending candlestick chart */
-      bot: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="8" y1="92" x2="92" y2="92"/><line x1="18" y1="70" x2="18" y2="84"/><rect x="14" y="76" width="8" height="10"/><line x1="33" y1="56" x2="33" y2="72"/><rect x="29" y="61" width="8" height="10"/><line x1="48" y1="40" x2="48" y2="58"/><rect x="44" y="45" width="8" height="11"/><line x1="63" y1="26" x2="63" y2="44"/><rect x="59" y="31" width="8" height="11"/><line x1="78" y1="13" x2="78" y2="30"/><rect x="74" y="18" width="8" height="10"/><line x1="10" y1="86" x2="88" y2="16" stroke-dasharray="3 2" stroke-opacity="0.55"/></svg>',
+      /* HOOKED — waves + hook descending + sun arc + tide marks */
+      hook: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">'
+        + '<path d="M0 60 Q12 50 25 60 Q37 70 50 60 Q62 50 75 60 Q87 70 100 60" stroke-width="1" stroke-opacity="0.3"/>'
+        + '<path d="M0 72 Q12 62 25 72 Q37 82 50 72 Q62 62 75 72 Q87 82 100 72" stroke-width="1" stroke-opacity="0.22"/>'
+        + '<path d="M0 84 Q12 74 25 84 Q37 94 50 84 Q62 74 75 84 Q87 94 100 84" stroke-width="1" stroke-opacity="0.15"/>'
+        + '<path d="M10 48 Q35 18 60 48" stroke-width="1.2" stroke-opacity="0.35" stroke-dasharray="3 2"/>'
+        + '<circle cx="10" cy="48" r="2.5" fill="currentColor" fill-opacity="0.3" stroke-width="0"/>'
+        + '<circle cx="60" cy="48" r="2.5" fill="currentColor" fill-opacity="0.3" stroke-width="0"/>'
+        + '<line x1="85" y1="52" x2="90" y2="52" stroke-width="1" stroke-opacity="0.35"/>'
+        + '<line x1="83" y1="60" x2="90" y2="60" stroke-width="1" stroke-opacity="0.35"/>'
+        + '<line x1="85" y1="68" x2="90" y2="68" stroke-width="1" stroke-opacity="0.35"/>'
+        + '<circle cx="34" cy="10" r="3" stroke-width="2"/>'
+        + '<line x1="34" y1="13" x2="34" y2="38" stroke-width="2"/>'
+        + '<path d="M34 38 C34 54 48 60 55 60 C66 60 67 50 67 50 C67 42 59 38 59 38" stroke-width="2"/>'
+        + '<line x1="59" y1="38" x2="65" y2="31" stroke-width="2"/>'
+        + '</svg>',
 
-      /* JobTrace / Dashboard: multi-column bar chart with grid */
-      chart: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="8" y1="92" x2="92" y2="92"/><line x1="8" y1="8" x2="8" y2="92"/><line x1="8" y1="68" x2="92" y2="68" stroke-width="0.75" stroke-opacity="0.35"/><line x1="8" y1="44" x2="92" y2="44" stroke-width="0.75" stroke-opacity="0.35"/><line x1="8" y1="20" x2="92" y2="20" stroke-width="0.75" stroke-opacity="0.35"/><rect x="14" y="52" width="11" height="40"/><rect x="29" y="30" width="11" height="62"/><rect x="44" y="62" width="11" height="30"/><rect x="59" y="16" width="11" height="76"/><rect x="74" y="44" width="11" height="48"/></svg>',
+      /* TRADING BOT — AI circuit nodes + candlesticks + trend arrow */
+      bot: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round">'
+        + '<circle cx="14" cy="22" r="3.5" stroke-width="1" stroke-opacity="0.25"/>'
+        + '<circle cx="42" cy="13" r="3.5" stroke-width="1" stroke-opacity="0.25"/>'
+        + '<circle cx="70" cy="18" r="3.5" stroke-width="1" stroke-opacity="0.25"/>'
+        + '<circle cx="86" cy="36" r="3.5" stroke-width="1" stroke-opacity="0.25"/>'
+        + '<line x1="17" y1="22" x2="38" y2="13" stroke-width="0.75" stroke-opacity="0.2" stroke-dasharray="2 2"/>'
+        + '<line x1="46" y1="13" x2="66" y2="18" stroke-width="0.75" stroke-opacity="0.2" stroke-dasharray="2 2"/>'
+        + '<line x1="74" y1="18" x2="84" y2="34" stroke-width="0.75" stroke-opacity="0.2" stroke-dasharray="2 2"/>'
+        + '<line x1="8" y1="93" x2="92" y2="93" stroke-width="1.5"/>'
+        + '<line x1="18" y1="68" x2="18" y2="82"/><rect x="14" y="74" width="8" height="10" stroke-width="1.5"/>'
+        + '<line x1="32" y1="54" x2="32" y2="70"/><rect x="28" y="59" width="8" height="10" stroke-width="1.5"/>'
+        + '<line x1="46" y1="40" x2="46" y2="56"/><rect x="42" y="45" width="8" height="11" stroke-width="1.5"/>'
+        + '<line x1="60" y1="26" x2="60" y2="43"/><rect x="56" y="31" width="8" height="10" stroke-width="1.5"/>'
+        + '<line x1="74" y1="13" x2="74" y2="29"/><rect x="70" y="18" width="8" height="9" stroke-width="1.5"/>'
+        + '<line x1="8" y1="87" x2="82" y2="12" stroke-width="1" stroke-dasharray="3 2" stroke-opacity="0.45"/>'
+        + '<polyline points="74,7 82,12 77,18" stroke-width="1.5" stroke-opacity="0.7"/>'
+        + '</svg>',
 
-      /* Movie Analysis: film strip with lens */
-      movie: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="12" width="84" height="76" rx="3"/><rect x="8" y="12" width="14" height="76"/><rect x="78" y="12" width="14" height="76"/><rect x="11" y="18" width="8" height="7" rx="1"/><rect x="11" y="33" width="8" height="7" rx="1"/><rect x="11" y="48" width="8" height="7" rx="1"/><rect x="11" y="63" width="8" height="7" rx="1"/><rect x="81" y="18" width="8" height="7" rx="1"/><rect x="81" y="33" width="8" height="7" rx="1"/><rect x="81" y="48" width="8" height="7" rx="1"/><rect x="81" y="63" width="8" height="7" rx="1"/><circle cx="50" cy="50" r="20"/><circle cx="50" cy="50" r="8"/><circle cx="50" cy="50" r="2"/></svg>',
+      /* JOBTRACE — envelope + pipeline bars + outcome star */
+      chart: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">'
+        + '<rect x="8" y="10" width="84" height="52" rx="2" stroke-width="1" stroke-opacity="0.22"/>'
+        + '<polyline points="8,10 50,38 92,10" stroke-width="1" stroke-opacity="0.22"/>'
+        + '<line x1="8" y1="92" x2="92" y2="92" stroke-width="1.5"/>'
+        + '<rect x="12" y="72" width="11" height="20" stroke-width="1.5"/>'
+        + '<rect x="27" y="62" width="11" height="30" stroke-width="1.5"/>'
+        + '<rect x="42" y="78" width="11" height="14" stroke-width="1.5"/>'
+        + '<rect x="57" y="55" width="11" height="37" stroke-width="1.5"/>'
+        + '<rect x="72" y="68" width="11" height="24" stroke-width="1.5"/>'
+        + '<polygon points="50,18 52.5,26 61,26 54.5,31 57,39 50,34 43,39 45.5,31 39,26 47.5,26" stroke-width="1.2" stroke-opacity="0.6"/>'
+        + '</svg>',
 
-      /* Michelin Guide: star inside concentric rings */
-      food: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="36"/><polygon points="50,16 55,33 74,33 59,44 65,61 50,51 35,61 41,44 26,33 45,33"/></svg>',
+      /* MOVIE ANALYSIS — film strip + bar chart inside + star ratings */
+      movie: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">'
+        + '<rect x="5" y="8" width="90" height="84" rx="3" stroke-width="1.5"/>'
+        + '<rect x="5" y="8" width="13" height="84" stroke-width="1.5"/>'
+        + '<rect x="82" y="8" width="13" height="84" stroke-width="1.5"/>'
+        + '<rect x="7" y="14" width="9" height="6" rx="1" stroke-width="1"/>'
+        + '<rect x="7" y="28" width="9" height="6" rx="1" stroke-width="1"/>'
+        + '<rect x="7" y="42" width="9" height="6" rx="1" stroke-width="1"/>'
+        + '<rect x="7" y="56" width="9" height="6" rx="1" stroke-width="1"/>'
+        + '<rect x="7" y="70" width="9" height="6" rx="1" stroke-width="1"/>'
+        + '<rect x="7" y="84" width="9" height="5" rx="1" stroke-width="1"/>'
+        + '<rect x="84" y="14" width="9" height="6" rx="1" stroke-width="1"/>'
+        + '<rect x="84" y="28" width="9" height="6" rx="1" stroke-width="1"/>'
+        + '<rect x="84" y="42" width="9" height="6" rx="1" stroke-width="1"/>'
+        + '<rect x="84" y="56" width="9" height="6" rx="1" stroke-width="1"/>'
+        + '<rect x="84" y="70" width="9" height="6" rx="1" stroke-width="1"/>'
+        + '<rect x="84" y="84" width="9" height="5" rx="1" stroke-width="1"/>'
+        + '<line x1="18" y1="88" x2="82" y2="88" stroke-width="1" stroke-opacity="0.4"/>'
+        + '<rect x="22" y="64" width="9" height="24" stroke-width="1.3" stroke-opacity="0.7"/>'
+        + '<rect x="35" y="54" width="9" height="34" stroke-width="1.3" stroke-opacity="0.7"/>'
+        + '<rect x="48" y="60" width="9" height="28" stroke-width="1.3" stroke-opacity="0.7"/>'
+        + '<rect x="61" y="48" width="9" height="40" stroke-width="1.3" stroke-opacity="0.7"/>'
+        + '<polygon points="27,22 28.5,27 33,27 29.5,30 31,35 27,32 23,35 24.5,30 21,27 25.5,27" stroke-width="1" stroke-opacity="0.5"/>'
+        + '<polygon points="40,22 41.5,27 46,27 42.5,30 44,35 40,32 36,35 37.5,30 34,27 38.5,27" stroke-width="1" stroke-opacity="0.5"/>'
+        + '<polygon points="53,22 54.5,27 59,27 55.5,30 57,35 53,32 49,35 50.5,30 47,27 51.5,27" stroke-width="1" stroke-opacity="0.5"/>'
+        + '</svg>',
 
-      /* Maven Market Power BI: storefront elevation */
-      store: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="8" y="36" width="84" height="56"/><path d="M4 36 L18 12 L82 12 L96 36"/><line x1="4" y1="36" x2="96" y2="36"/><line x1="50" y1="36" x2="50" y2="92"/><rect x="13" y="44" width="16" height="12" rx="1"/><rect x="71" y="44" width="16" height="12" rx="1"/><rect x="35" y="58" width="30" height="34"/></svg>',
+      /* MICHELIN — plate + fork & knife + star center */
+      food: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round">'
+        + '<circle cx="50" cy="50" r="46" stroke-width="1" stroke-opacity="0.18"/>'
+        + '<circle cx="50" cy="50" r="38" stroke-width="1.5"/>'
+        + '<line x1="22" y1="18" x2="22" y2="82" stroke-width="1.5"/>'
+        + '<line x1="17" y1="18" x2="17" y2="32" stroke-width="1.5"/>'
+        + '<line x1="27" y1="18" x2="27" y2="32" stroke-width="1.5"/>'
+        + '<path d="M17 32 Q22 37 27 32" stroke-width="1.5"/>'
+        + '<line x1="78" y1="18" x2="78" y2="82" stroke-width="1.5"/>'
+        + '<path d="M78 18 Q85 30 78 46" stroke-width="1.5"/>'
+        + '<polygon points="50,30 53.5,42 66,42 56,49 59.5,61 50,54 40.5,61 44,49 34,42 46.5,42" stroke-width="1.5"/>'
+        + '</svg>',
 
-      /* Spotify Data Cleaning: waveform bars + smooth curve */
-      music: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="5" y1="92" x2="95" y2="92"/><rect x="8" y="60" width="9" height="32"/><rect x="21" y="42" width="9" height="50"/><rect x="34" y="54" width="9" height="38"/><rect x="47" y="28" width="9" height="64"/><rect x="60" y="48" width="9" height="44"/><rect x="73" y="36" width="9" height="56"/><path d="M8 74 Q25 38 47 32 Q68 26 82 58" fill="none" stroke-dasharray="3 2" stroke-opacity="0.7"/></svg>',
+      /* MAVEN MARKET — store facade + bar chart inside + price tag */
+      store: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round">'
+        + '<rect x="8" y="34" width="84" height="60" stroke-width="1.5"/>'
+        + '<path d="M4 34 L19 10 L81 10 L96 34" stroke-width="1.5"/>'
+        + '<line x1="4" y1="34" x2="96" y2="34" stroke-width="1.5"/>'
+        + '<line x1="50" y1="34" x2="50" y2="94" stroke-width="1"/>'
+        + '<line x1="8" y1="88" x2="92" y2="88" stroke-width="1" stroke-opacity="0.4"/>'
+        + '<rect x="14" y="70" width="9" height="18" stroke-width="1.3" stroke-opacity="0.65"/>'
+        + '<rect x="26" y="60" width="9" height="28" stroke-width="1.3" stroke-opacity="0.65"/>'
+        + '<rect x="38" y="74" width="9" height="14" stroke-width="1.3" stroke-opacity="0.65"/>'
+        + '<rect x="56" y="56" width="9" height="32" stroke-width="1.3" stroke-opacity="0.65"/>'
+        + '<rect x="68" y="66" width="9" height="22" stroke-width="1.3" stroke-opacity="0.65"/>'
+        + '<rect x="80" y="62" width="9" height="26" stroke-width="1.3" stroke-opacity="0.65"/>'
+        + '<path d="M66 14 L80 14 L86 21 L80 28 L66 28 Z" stroke-width="1.2" stroke-opacity="0.5"/>'
+        + '<circle cx="68" cy="21" r="2" fill="currentColor" fill-opacity="0.4" stroke-width="0"/>'
+        + '</svg>',
 
-      /* Spotify Dashboard: scatter (audio features vs popularity) */
-      scatter: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="8" y1="92" x2="92" y2="92"/><line x1="8" y1="8" x2="8" y2="92"/><circle cx="18" cy="80" r="3"/><circle cx="24" cy="72" r="3"/><circle cx="21" cy="76" r="3"/><circle cx="34" cy="58" r="3"/><circle cx="40" cy="50" r="3"/><circle cx="38" cy="54" r="3"/><circle cx="52" cy="36" r="3"/><circle cx="58" cy="28" r="3"/><circle cx="55" cy="32" r="3"/><circle cx="70" cy="20" r="3"/><circle cx="76" cy="14" r="3"/><line x1="10" y1="90" x2="84" y2="12" stroke-width="1" stroke-dasharray="4 2" stroke-opacity="0.45"/></svg>',
+      /* SPOTIFY CLEANING — vinyl record + EQ bars across it + music note */
+      music: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round">'
+        + '<circle cx="50" cy="50" r="44" stroke-width="1" stroke-opacity="0.18"/>'
+        + '<circle cx="50" cy="50" r="36" stroke-width="1" stroke-opacity="0.22"/>'
+        + '<circle cx="50" cy="50" r="28" stroke-width="1" stroke-opacity="0.18"/>'
+        + '<circle cx="50" cy="50" r="12" stroke-width="1.5" stroke-opacity="0.45"/>'
+        + '<circle cx="50" cy="50" r="4" stroke-width="1.5"/>'
+        + '<path d="M8 50 Q16 36 24 50 Q32 64 40 50 Q48 36 56 50 Q64 64 72 50 Q80 36 88 50 Q96 64 100 50" stroke-width="1.5" stroke-opacity="0.7"/>'
+        + '<line x1="72" y1="16" x2="72" y2="32" stroke-width="1.5" stroke-opacity="0.55"/>'
+        + '<line x1="72" y1="16" x2="83" y2="20" stroke-width="1.5" stroke-opacity="0.55"/>'
+        + '<ellipse cx="68" cy="34" rx="5" ry="3.5" transform="rotate(-12 68 34)" stroke-width="1.5" stroke-opacity="0.55"/>'
+        + '</svg>',
 
-      /* World Population: detailed globe wireframe */
-      globe: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="50" cy="50" r="44"/><ellipse cx="50" cy="50" rx="22" ry="44"/><line x1="6" y1="50" x2="94" y2="50"/><path d="M13 28 Q50 20 87 28"/><path d="M13 72 Q50 80 87 72"/><ellipse cx="50" cy="50" rx="44" ry="16"/></svg>',
+      /* SPOTIFY DASHBOARD — radar chart axes + scatter cloud + play triangle */
+      scatter: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round">'
+        + '<line x1="50" y1="8" x2="50" y2="92" stroke-width="0.75" stroke-opacity="0.2"/>'
+        + '<line x1="8" y1="50" x2="92" y2="50" stroke-width="0.75" stroke-opacity="0.2"/>'
+        + '<line x1="20" y1="20" x2="80" y2="80" stroke-width="0.75" stroke-opacity="0.2"/>'
+        + '<line x1="80" y1="20" x2="20" y2="80" stroke-width="0.75" stroke-opacity="0.2"/>'
+        + '<polygon points="50,18 72,30 80,58 60,76 40,76 20,58 28,30" stroke-width="1" stroke-opacity="0.2"/>'
+        + '<polygon points="50,30 63,38 68,56 56,66 44,66 32,56 37,38" stroke-width="1" stroke-opacity="0.25"/>'
+        + '<circle cx="28" cy="74" r="2.5" stroke-width="1.5"/>'
+        + '<circle cx="36" cy="62" r="2.5" stroke-width="1.5"/>'
+        + '<circle cx="34" cy="68" r="2.5" stroke-width="1.5"/>'
+        + '<circle cx="50" cy="44" r="2.5" stroke-width="1.5"/>'
+        + '<circle cx="58" cy="34" r="2.5" stroke-width="1.5"/>'
+        + '<circle cx="66" cy="24" r="2.5" stroke-width="1.5"/>'
+        + '<circle cx="72" cy="18" r="2.5" stroke-width="1.5"/>'
+        + '<line x1="22" y1="82" x2="80" y2="14" stroke-width="1" stroke-dasharray="3 2" stroke-opacity="0.4"/>'
+        + '<polygon points="43,44 57,50 43,56" stroke-width="1.2" stroke-opacity="0.35"/>'
+        + '</svg>',
 
-      /* Airline Satisfaction: flight arc with plane */
-      plane: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 82 Q50 18 90 82"/><circle cx="10" cy="82" r="4"/><circle cx="90" cy="82" r="4"/><circle cx="30" cy="54" r="2.5"/><circle cx="70" cy="54" r="2.5"/><line x1="5" y1="88" x2="95" y2="88" stroke-dasharray="4 3" stroke-opacity="0.5"/><g transform="translate(50,27) rotate(-2)"><path d="M0,-7 L-2.5,0 L-13,3.5 L-13,6 L-2.5,4 L-2,11 L-4.5,13 L-4.5,15 L0,13.5 L4.5,15 L4.5,13 L2,11 L2.5,4 L13,6 L13,3.5 L2.5,0 Z" stroke-width="1"/></g></svg>'
+      /* WORLD POPULATION — globe wireframe + density dot clusters + arrows */
+      globe: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round">'
+        + '<circle cx="50" cy="50" r="44" stroke-width="1.5"/>'
+        + '<ellipse cx="50" cy="50" rx="22" ry="44" stroke-width="1"/>'
+        + '<line x1="6" y1="50" x2="94" y2="50" stroke-width="1"/>'
+        + '<path d="M13 28 Q50 21 87 28" stroke-width="1"/>'
+        + '<path d="M13 72 Q50 79 87 72" stroke-width="1"/>'
+        + '<ellipse cx="50" cy="50" rx="44" ry="15" stroke-width="1"/>'
+        + '<circle cx="57" cy="34" r="2" fill="currentColor" fill-opacity="0.5" stroke-width="0"/>'
+        + '<circle cx="63" cy="36" r="2" fill="currentColor" fill-opacity="0.5" stroke-width="0"/>'
+        + '<circle cx="60" cy="40" r="2" fill="currentColor" fill-opacity="0.5" stroke-width="0"/>'
+        + '<circle cx="54" cy="42" r="2" fill="currentColor" fill-opacity="0.5" stroke-width="0"/>'
+        + '<circle cx="68" cy="32" r="2" fill="currentColor" fill-opacity="0.35" stroke-width="0"/>'
+        + '<circle cx="48" cy="48" r="2" fill="currentColor" fill-opacity="0.3" stroke-width="0"/>'
+        + '<circle cx="42" cy="52" r="2" fill="currentColor" fill-opacity="0.3" stroke-width="0"/>'
+        + '<line x1="30" y1="60" x2="42" y2="50" stroke-width="1" stroke-opacity="0.4" stroke-dasharray="2 2"/>'
+        + '<polyline points="38,48 42,50 40,54" stroke-width="1" stroke-opacity="0.4"/>'
+        + '</svg>',
+
+      /* AIRLINE — seat grid (cabin rows) + flight arc + airplane + smiley score */
+      plane: '<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round">'
+        + '<rect x="8" y="54" width="8" height="6" rx="1" stroke-width="1" stroke-opacity="0.28"/>'
+        + '<rect x="8" y="64" width="8" height="6" rx="1" stroke-width="1" stroke-opacity="0.28"/>'
+        + '<rect x="8" y="74" width="8" height="6" rx="1" stroke-width="1" stroke-opacity="0.28"/>'
+        + '<rect x="8" y="84" width="8" height="6" rx="1" stroke-width="1" stroke-opacity="0.28"/>'
+        + '<rect x="18" y="54" width="8" height="6" rx="1" stroke-width="1" stroke-opacity="0.28"/>'
+        + '<rect x="18" y="64" width="8" height="6" rx="1" stroke-width="1" stroke-opacity="0.28"/>'
+        + '<rect x="18" y="74" width="8" height="6" rx="1" stroke-width="1" stroke-opacity="0.28"/>'
+        + '<rect x="18" y="84" width="8" height="6" rx="1" stroke-width="1" stroke-opacity="0.28"/>'
+        + '<rect x="28" y="54" width="8" height="6" rx="1" stroke-width="1" stroke-opacity="0.2"/>'
+        + '<rect x="28" y="64" width="8" height="6" rx="1" stroke-width="1" stroke-opacity="0.2"/>'
+        + '<rect x="28" y="74" width="8" height="6" rx="1" stroke-width="1" stroke-opacity="0.2"/>'
+        + '<path d="M46 94 Q68 46 92 26" stroke-width="1.5" stroke-opacity="0.5"/>'
+        + '<circle cx="62" cy="66" r="2.5" stroke-width="1.5" stroke-opacity="0.55"/>'
+        + '<circle cx="78" cy="44" r="2.5" stroke-width="1.5" stroke-opacity="0.55"/>'
+        + '<g transform="translate(88,22) rotate(-40)">'
+        + '<path d="M0,-7 L-2.5,0 L-12,4 L-12,7 L-2.5,4 L-2,10 L-4,12 L-4,14 L0,13 L4,14 L4,12 L2,10 L2.5,4 L12,7 L12,4 L2.5,0 Z" stroke-width="1.3"/>'
+        + '</g>'
+        + '<circle cx="24" cy="24" r="13" stroke-width="1.5"/>'
+        + '<circle cx="20" cy="21" r="2" fill="currentColor" fill-opacity="0.5" stroke-width="0"/>'
+        + '<circle cx="28" cy="21" r="2" fill="currentColor" fill-opacity="0.5" stroke-width="0"/>'
+        + '<path d="M19 27 Q24 32 29 27" stroke-width="1.5"/>'
+        + '</svg>'
     };
 
     /* ── Render Works ───────────────────────────────────── */
