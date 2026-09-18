@@ -413,6 +413,53 @@ h1 {
   margin-bottom: 1.25rem;
 }
 .about-copy p:last-child { margin-bottom: 0; }
+
+/* ── Skills block ───────────────────────────────────────── */
+.skills-block {
+  margin-top: 2rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(17,25,21,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.skill-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+.skill-cat {
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(17,25,21,0.4);
+  width: 5.5rem;
+  flex-shrink: 0;
+  padding-top: 0.15rem;
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.skill-tags span {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--dark);
+  background: rgba(17,25,21,0.06);
+  border: 1px solid rgba(17,25,21,0.1);
+  border-radius: 2px;
+  padding: 0.2rem 0.55rem;
+  letter-spacing: 0.02em;
+  transition: background 0.15s, border-color 0.15s;
+}
+.skill-tags span:hover {
+  background: rgba(17,25,21,0.11);
+  border-color: rgba(17,25,21,0.2);
+}
 .about-roles {
   margin-top: 2rem;
   padding-top: 1.75rem;
